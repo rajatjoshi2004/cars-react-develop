@@ -1,0 +1,82 @@
+._30YJ-root {
+    width: 100%;
+    height: 40px;
+    margin: 0 30px;
+    display: flex
+;
+    z-index: 1;
+    position: relative;
+    flex-grow: 2;
+    max-width: 570px;
+    box-shadow: 0px 1px 2px transparent;
+    transition: box-shadow .2sease;
+    border-radius: 30px;
+    background-color: #fff;
+}
+
+._cPDc-root {
+    border-radius: 20px 0 0 20px;
+}
+
+._cPDc-label {
+    color: black;
+}
+
+._cPDc-trigger {
+    cursor: pointer;
+    height: 100%;
+    display: flex
+;
+    padding: 0 14px;
+    transition: background-color .2sease;
+    align-items: center;
+    border-radius: 20px 0 0 20px;
+    background-color: #F0F0F0;
+}
+
+._30YJ-input {
+    color: #4c4c4c;
+    width: 100%;
+    border: none;
+    height: 40px;
+    display: block;
+    padding: 0 54px 0 14px;
+    z-index: 20;
+    position: relative;
+    font-size: 16px;
+    transition: box-shadow .15sease;
+    padding-top: 0;
+    padding-left: 14px;
+    border-radius: 0 30px 30px 0;
+    padding-right: 6px;
+    padding-bottom: 0;
+    background-color: transparent;
+}
+
+._yAya-root {
+    top: 14px;
+    right: 60px;
+    cursor: pointer;
+    display: flex
+;
+    opacity: 0.2;
+    outline: none;
+    z-index: 20;
+    position: absolute;
+    transition: opacity 0.15sease;
+    align-items: center;
+    user-select: none;
+    justify-content: center;
+}
+
+._30YJ-button {
+    width: 48px;
+    border: 2px solid white;
+    height: 40px;
+    overflow: hidden;
+    position: relative;
+    transition: background-color 0.2sease;
+    flex-shrink: 0;
+    border-radius: 0 30px 30px 0;
+    background-color: #FFA800;
+}

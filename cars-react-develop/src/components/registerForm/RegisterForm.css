@@ -1,0 +1,84 @@
+.register-form {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.register-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.social-btn {
+    flex: 1;
+    border: 2px solid #1677ff;
+    color: #1677ff;
+    border-radius: 50px;
+    font-weight: bold;
+}
+
+.divider-text {
+    font-weight: bold;
+    color: #555;
+    margin: 10px 0;
+}
+
+.required-text {
+    display: block;
+    text-align: left;
+    color: red;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.ant-input {
+    /* height: 45px; */
+    border-radius: 10px;
+    /* font-size: 16px; */
+}
+
+.terms {
+    background: #f5fdf0;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.terms a {
+    color: #1677ff;
+    font-weight: bold;
+}
+
+.register-button {
+    background: #fdb714;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    height: 45px;
+    border: none;
+}
+
+.register-button:hover {
+    background: #e6a10a;
+}
+
+.register-footer {
+    margin-top: 10px;
+}
+
+.register-footer a {
+    font-weight: bold;
+    text-decoration: underline;
+}

@@ -1,0 +1,39 @@
+.hero-section {
+    background: url("https://www.autobidmaster.com/build/spa/images/shared/backgrounds/home-bg.6dd40655.jpg")
+        no-repeat center center;
+    background-size: cover;
+    color: white;
+    padding: 50px 20px;
+}
+
+.hero-content {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.hero-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: white !important;
+}
+
+.hero-subtitle {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: white !important;
+}
+
+.steps {
+    margin-top: 20px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.step-icon {
+    font-size: 20px;
+    margin-right: 10px;
+}
