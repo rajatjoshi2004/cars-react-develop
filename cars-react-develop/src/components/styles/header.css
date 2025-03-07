@@ -1,5 +1,7 @@
 header {
     color: #4f359b;
+    flex-direction: row;
+    flex-wrap: nowrap;
 }
 
 .header {
@@ -17,6 +19,8 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
+    flex-direction: row;
+    padding: 10px 20px;
 }
 
 .navigation-panel {
@@ -34,6 +38,8 @@ header {
     top: 60px;
     z-index: 2;
     left: 0;
+    flex-direction: row;
+    flex-wrap: nowrap;
 }
 .left-nav-panel {
     height: 100%;
@@ -55,6 +61,7 @@ header {
     align-items: center;
     flex-shrink: 0;
     justify-content: space-between;
+    
 }
 
 .nav-toggle {
@@ -81,8 +88,10 @@ header {
 /* Tablet styles */
 @media (max-width: 992px) {
     .header {
-        flex-wrap: wrap; /* Allow wrapping of header content */
+       /* Allow wrapping of header content */
         padding: 12px 24px; /* Reduce padding */
+        flex-direction: row;
+         flex-wrap: nowrap;
     }
 
     .logo {
@@ -107,6 +116,8 @@ header {
 @media (max-width: 768px) {
     .header {
         padding: 8px 16px; /* Further reduce padding */
+        flex-direction: row;
+    flex-wrap: nowrap;
     }
 
     .logo img {

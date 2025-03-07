@@ -2,8 +2,11 @@ import React from "react";
 import HeroSection from "../components/heroSection/HeroSection";
 import { Button } from "antd";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+import { useTranslationApi } from "../hooks/useTranslationApi";
 
 const Landing: React.FC = () => {
+    const { t } = useTranslationApi();
     return (
         <div>
             <HeroSection />
@@ -32,7 +35,8 @@ const Landing: React.FC = () => {
                             transition: "all 0.3s ease",
                         }}
                     >
-                        View Inventory
+                        {t('landing.viewInventory')}
+                        {/* View Inventory */}
                     </Button>
                 </Link>
             </div>

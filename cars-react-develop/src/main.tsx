@@ -13,6 +13,7 @@ import UserProfileUpdate from "./pages/UserProfileUpdate";
 import EmailVerification from "./components/emailVerification/EmailVerification";
 import EnterOtp from "./pages/EnterOtp";
 import AccountVerified from "./components/AccountVerified";
+import "./i18n"
 
 
 const router = createBrowserRouter([

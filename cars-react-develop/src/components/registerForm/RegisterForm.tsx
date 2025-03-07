@@ -5,10 +5,13 @@ import { countryCodes } from "../../utils/mockData";
 import axios from "axios"; // Import Axios
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+import { useTranslationApi } from "../../hooks/useTranslationApi";
 
 const { Title, Text } = Typography;
 
 const RegisterForm: React.FC = () => {
+    const { t } = useTranslationApi();
     const [countryCode, setCountryCode] = useState<{
         code: string;
         dial_code: string;
@@ -95,11 +98,11 @@ const RegisterForm: React.FC = () => {
     return (
         <div className="register-form">
             <Title level={3} className="register-title">
-                Register a New Account for FREE!
+               {t('registerForm.title')}
             </Title>
 
             <Text type="danger" className="required-text">
-                * Indicates required fields
+                *{t('registerForm.required')}
             </Text>
 
             <Form form={form} layout="vertical">
@@ -111,11 +114,11 @@ const RegisterForm: React.FC = () => {
                             rules={[
                                 {
                                     required: true,
-                                    message: "First Name is required",
+                                    message: `${t('registerForm.firstNameError')}`,
                                 },
                             ]}
                         >
-                            <Input placeholder="First Name *" />
+                            <Input placeholder={t('registerForm.firstName')} />
                         </Form.Item>
                     </Col>
                     <Col xs={24} md={12}>
@@ -124,11 +127,11 @@ const RegisterForm: React.FC = () => {
                             rules={[
                                 {
                                     required: true,
-                                    message: "Last Name is required",
+                                    message: `${t('registerForm.lastNameError')}`,
                                 },
                             ]}
                         >
-                            <Input placeholder="Last Name *" />
+                            <Input placeholder={t('registerForm.lastName')} />
                         </Form.Item>
                     </Col>
                 </Row>
@@ -137,7 +140,7 @@ const RegisterForm: React.FC = () => {
                 <Form.Item
                     name="phone"
                     rules={[
-                        { required: true, message: "Phone number is required" },
+                        { required: true, message: t('registerForm.phoneError') },
                     ]}
                 >
                     <Input
@@ -166,7 +169,7 @@ const RegisterForm: React.FC = () => {
                                 ))}
                             </Select>
                         }
-                        placeholder="Phone Number *"
+                        placeholder={t('registerForm.phoneNumber')}
                     />
                 </Form.Item>
 
@@ -177,11 +180,11 @@ const RegisterForm: React.FC = () => {
                         {
                             required: true,
                             type: "email",
-                            message: "Enter a valid email",
+                            message: t('registerForm.emailError'),
                         },
                     ]}
                 >
-                    <Input placeholder="Email *" />
+                    <Input placeholder= {t('registerForm.email')} />
                 </Form.Item>
 
                 <Row gutter={16}>
@@ -192,17 +195,17 @@ const RegisterForm: React.FC = () => {
                             rules={[
                                 {
                                     required: true,
-                                    message: "Password is required",
+                                    message: `${t('registerForm.passwordRequired')}`,
                                 },
                                 {
                                     min: 6,
                                     message:
-                                        "Password must be at least 6 characters",
+                                    `${t('registerForm.passwordError')}`,
                                 },
                             ]}
                             hasFeedback
                         >
-                            <Input.Password placeholder="Password *" />
+                            <Input.Password placeholder={t('registerForm.password')} />
                         </Form.Item>
                     </Col>
 
@@ -214,7 +217,7 @@ const RegisterForm: React.FC = () => {
                             rules={[
                                 {
                                     required: true,
-                                    message: "Please confirm your password",
+                                    message: `${t('registerForm.confirmPasswordError')}`,
                                 },
                                 ({ getFieldValue }) => ({
                                     validator(_, value) {
@@ -232,15 +235,14 @@ const RegisterForm: React.FC = () => {
                             ]}
                             hasFeedback
                         >
-                            <Input.Password placeholder="Confirm Password *" />
+                            <Input.Password placeholder={t('registerForm.confirmPassword')} />
                         </Form.Item>
                     </Col>
                 </Row>
 
                 {/* Terms & Conditions */}
                 <div className="terms">
-                    By clicking <strong>"REGISTER NOW"</strong> you agree to
-                    AutoBidMaster's <a href="#">Terms and Conditions</a>
+                   {t('registerForm.clicking')} <strong>{t('registerForm.registerNow')}</strong> {t('registerForm.agree')} <a href="#">{t('registerForm.terms')}</a>
                 </div>
 
                 {/* Register Button */}
@@ -251,7 +253,7 @@ const RegisterForm: React.FC = () => {
                         className="register-button"
                         onClick={registerHandler}
                     >
-                        REGISTER NOW
+                        {t('registerForm.register')}
                     </Button>
                 </Form.Item>
             </Form>

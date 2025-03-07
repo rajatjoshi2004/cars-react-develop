@@ -9,12 +9,15 @@ import "antd/dist/reset.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useTranslation } from 'react-i18next';
+import { useTranslationApi } from "../../hooks/useTranslationApi";
 
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [termsAccepted, setTermsAccepted] = useState<boolean>(false);
     const navigate = useNavigate();
+    const { t } = useTranslationApi()
 
     useEffect(() => {
         window.scrollTo(0, 0); // Scroll to the top of the page
@@ -68,7 +71,7 @@ const LoginForm: React.FC = () => {
                 <div className="w-full md:w-1/2 flex items-center justify-center p-6">
                     <div className="w-full max-w-md">
                         <h2 className="text-lg font-semibold text-center mb-3">
-                            Sign in to Your Account
+                          {t('header.signInAccount')}
                         </h2>
 
                         <Form layout="vertical" onFinish={onFinish}>
@@ -78,13 +81,13 @@ const LoginForm: React.FC = () => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: "Please enter your email!",
+                                        message: `${t('header.emailLogin')}`,
                                     },
                                 ]}
                                 className="mb-2"
                             >
                                 <Input
-                                    placeholder="Email"
+                                    placeholder= {t('registerForm.email')}
                                     size="middle"
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
@@ -96,13 +99,13 @@ const LoginForm: React.FC = () => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: "Please enter your password!",
+                                        message: `${t('header.passwordLogin')}`,
                                     },
                                 ]}
                                 className="mb-2"
                             >
                                 <Input.Password
-                                    placeholder="Password"
+                                    placeholder={t('registerForm.password')}
                                     size="middle"
                                     onChange={(e) =>
                                         setPassword(e.target.value)
@@ -116,7 +119,7 @@ const LoginForm: React.FC = () => {
                                     to="/verify"
                                     className="text-blue-500 text-xs"
                                 >
-                                    Forgot password?
+                                    {t('header.forgot')}
                                 </Link>
                             </div>
 
@@ -127,11 +130,10 @@ const LoginForm: React.FC = () => {
                                         setTermsAccepted(e.target.checked)
                                     }
                                 >
-                                    By clicking "SIGN IN" you agree to Atlantic
-                                    Cars's
+                                   {t('header.agreement')}
                                     <a href="#" className="text-blue-500">
                                         {" "}
-                                        Terms and Conditions
+                                       {t('registerForm.terms')}
                                     </a>
                                 </Checkbox>
                             </Form.Item>
@@ -145,7 +147,7 @@ const LoginForm: React.FC = () => {
                                     size="middle"
                                     className="bg-blue-600"
                                 >
-                                    SIGN IN
+                                   {t('header.signIn')}
                                 </Button>
                             </Form.Item>
                         </Form>
@@ -182,13 +184,13 @@ const LoginForm: React.FC = () => {
 
                         {/* Register Now */}
                         <p className="text-center text-xs mt-3">
-                            Don't have an account?
+                           
                             <Link
                                 to="/register"
                                 className="text-blue-500 font-semibold"
-                            >
+                            >{t('header.account')}
                                 {" "}
-                                REGISTER NOW
+                                {t('registerForm.register')}
                             </Link>
                         </p>
                     </div>
