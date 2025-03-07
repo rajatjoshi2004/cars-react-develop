@@ -46,9 +46,8 @@ const CarFinderForm = () => {
         }
     };
 
-    const fetchModels = async (manufacturerId) => {
+    const fetchModels = async (manufacturerId:any) => {
         if (!manufacturerId) return;
-
         try {
             const url = `https://cars.asicompany.com/api/model/${manufacturerId}`;
             const response = await apiCall("GET", url);

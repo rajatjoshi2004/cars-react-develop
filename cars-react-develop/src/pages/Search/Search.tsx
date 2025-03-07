@@ -522,13 +522,12 @@ const Search = () => {
 
     // Update URL with filters without triggering a page reload
     const newUrl = `${window.location.pathname}?${filterQuery}`;
-    window.history.pushState({ path: newUrl }, "", newUrl);
+    navigate(newUrl, { replace: true });
 
     setLoading(true);
 
     try {
       const response = await apiCall("GET", url);
-      // console.log(response);
       setData(response);
       // Update results info
       setResultsInfo({
@@ -539,7 +538,6 @@ const Search = () => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      console.error("Error fetching cars", error);
     }
   };
 
@@ -550,7 +548,6 @@ const Search = () => {
         "GET",
         "https://cars.asicompany.com/api/manufacturers"
       );
-      // console.log(response);
       setManufacturers(response.data || []);
     } catch (error) {
       console.error("Error fetching manufacturers:", error);
@@ -560,7 +557,7 @@ const Search = () => {
   // Modified fetchModels to use correct URL format with manufacturer_id
   const fetchModels = async (manufacturerIds?: number[]) => {
     try {
-      let url = "https://cars.asicompany.com/api/model";
+      let url = "https://cars.asicompany.com/api/models";
 
       // Add manufacturer_id parameter if provided
       if (manufacturerIds && manufacturerIds.length > 0) {
@@ -569,7 +566,6 @@ const Search = () => {
       }
 
       const response = await apiCall("GET", url);
-      // console.log(response);
       setModels(response.data || []);
     } catch (error) {
       console.error("Error fetching models:", error);
@@ -583,7 +579,6 @@ const Search = () => {
 
     const initializeData = async () => {
       await fetchManufacturers();
-
       if (manufacturerParam) {
         // If manufacturer_id exists in URL, fetch specific models
         const manufacturerIds = manufacturerParam.split(",").map(Number);
@@ -599,6 +594,7 @@ const Search = () => {
 
     initializeData();
   }, [location.search]); // Depend on URL changes
+
   const handleFilterChange = (filterName: string, value: boolean) => {
     const isAuth = isAuthenticated();
     if (!isAuth) {

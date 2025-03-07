@@ -332,7 +332,7 @@ const CarList: React.FC<CarListProps> = ({
                     const secondaryDamage = lot?.damage?.second?.name;
 
                     // Handle other properties
-                    const engineInfo = safeString(lot?.engine?.name) || "N/A";
+                    const engineInfo = safeString(car?.engine?.name) || "N/A";
                     const transmission = safeString(car.transmission) || "N/A";
                     const driveType = safeString(car.drive_wheel) || "N/A";
                     const status = lot?.condition?.id || "N/A";
