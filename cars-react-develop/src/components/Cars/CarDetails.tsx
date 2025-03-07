@@ -500,7 +500,7 @@ const VehicleDetails = ({
                                 onClick={() => handleCopy(activeLot.lot || "")}
                                 className="bg-transparent"
                                 style={{ padding: "0 !important" }}
-                            >import PriceCalculator from './../Calculator/PriceCalculator';
+                            >
 
                                 <MdOutlineFileCopy />
                             </button>
@@ -716,7 +716,8 @@ const BidInformation = ({
                 <span className="font-light w-1/3">Current Bid:</span>
                 <div className="leading-5 w-2/3">
                     <span className="font-bold text-[1rem] sm:text-[1.2rem] lg:text-[1.4rem]">
-                        {activeLot.bid ? `$${activeLot.bid}` : "$0"}
+                        {activeLot.bid ? `$${activeLot.bid}` : "$0" }
+                        
                     </span>
                     <p className="text-[0.8rem]">
                         {activeLot.status || "Seller Reserve Not Yet Met"}
@@ -813,10 +814,10 @@ const SaleInformation = ({ activeLot }: { activeLot: Lot }) => {
             </p>
                       
         
-          <div className="border mt-2 h-fit rounded-lg p-3 border-slate-300">
-          <h3 style={{fontWeight:"600"}}>Price Calculator</h3>
-      < PriceCalculator/> 
-      </div>
+        <div className="border mt-2 h-fit rounded-lg p-3 border-slate-300">
+            <h3 className="font-semibold">Price Calculator</h3>
+            <PriceCalculator currentBid={activeLot.bid || null} />
+        </div>
       </div>
     );
 };

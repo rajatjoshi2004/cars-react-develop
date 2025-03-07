@@ -1,5 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import "./styles/searchInput.css";
+import { useTranslation } from 'react-i18next';
+import { useTranslationApi } from "../hooks/useTranslationApi";
 
 const SearchInput = () => {
     const navigate = useNavigate();
@@ -27,12 +29,12 @@ const SearchInput = () => {
             }
         }
     };
-
+    const { t } = useTranslationApi()
     return (
         <form onSubmit={handleSubmit} className="_30YJ-root">
             <div className="_cPDc-root">
                 <button type="button" className="_cPDc-trigger qa_auc_t_button">
-                    <span className="_cPDc-label">All</span>{" "}
+                    <span className="_cPDc-label">{t('header.all')}</span>{" "}
                     <div className="_cPDc-triangle"></div>
                 </button>
                 <div></div>
@@ -41,7 +43,7 @@ const SearchInput = () => {
                 className="_30YJ-input qa_id_search_field"
                 type="search"
                 name="q"
-                placeholder="Search Vehicles by Make, Model, Year, Vin, etc"
+                placeholder={t('header.searchInput')}
                 aria-label="Search Vehicles by Make, Model, Year, Vin, etc"
             />
             <button

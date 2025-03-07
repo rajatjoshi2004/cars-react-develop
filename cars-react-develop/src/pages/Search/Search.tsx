@@ -21,6 +21,8 @@ import { apiCall } from "../../utils/api/API";
 import VehicleTable from "./SearchResults";
 import { CarApiResponse } from "../../types/interfaces";
 import ResponsiveButton from "./ResponsiveButton";
+import { useTranslation } from "react-i18next";
+import { useTranslationApi } from "../../hooks/useTranslationApi";
 import {
   bodyStyles,
   colorOptions,
@@ -85,7 +87,6 @@ const SearchableCheckboxGroup = ({
   const displayOptions = showAll
     ? filteredOptions
     : filteredOptions.slice(0, 5);
-
   return (
     <div>
       <Input.Search
@@ -559,7 +560,7 @@ const Search = () => {
   // Modified fetchModels to use correct URL format with manufacturer_id
   const fetchModels = async (manufacturerIds?: number[]) => {
     try {
-      let url = "https://cars.asicompany.com/api/models";
+      let url = "https://cars.asicompany.com/api/model";
 
       // Add manufacturer_id parameter if provided
       if (manufacturerIds && manufacturerIds.length > 0) {
@@ -601,60 +602,66 @@ const Search = () => {
   const handleFilterChange = (filterName: string, value: boolean) => {
     const isAuth = isAuthenticated();
     if (!isAuth) {
-        navigate("/login");
-        return;
+      navigate("/login");
+      return;
     }
 
     let updatedFilters = { ...filters, [filterName]: value };
 
     // Handle Parent-Child Dependency
     if (filterName === "copartAuction") {
-        updatedFilters.usacopart = value;
-        updatedFilters.canadacopart = value;
+      updatedFilters.usacopart = value;
+      updatedFilters.canadacopart = value;
     }
 
     if (filterName === "iaaiAuction") {
-        updatedFilters.usaiaai = value;
-        updatedFilters.canadaiaai = value;
+      updatedFilters.usaiaai = value;
+      updatedFilters.canadaiaai = value;
     }
 
     // Turn off Copart if both usacopart & canadacopart are off
-    if ((filterName === "usacopart" || filterName === "canadacopart") && !updatedFilters.usacopart && !updatedFilters.canadacopart) {
-        updatedFilters.copartAuction = false;
+    if (
+      (filterName === "usacopart" || filterName === "canadacopart") &&
+      !updatedFilters.usacopart &&
+      !updatedFilters.canadacopart
+    ) {
+      updatedFilters.copartAuction = false;
 
-        // If both Copart & IAAI are off, turn on IAAI
-        if (!updatedFilters.iaaiAuction) {
-            updatedFilters.iaaiAuction = true;
-            updatedFilters.usaiaai = true;
-            updatedFilters.canadaiaai = true;
-        }
+      // If both Copart & IAAI are off, turn on IAAI
+      if (!updatedFilters.iaaiAuction) {
+        updatedFilters.iaaiAuction = true;
+        updatedFilters.usaiaai = true;
+        updatedFilters.canadaiaai = true;
+      }
     }
 
     // Turn off IAAI if both usaiaai & canadaiaai are off
-    if ((filterName === "usaiaai" || filterName === "canadaiaai") && !updatedFilters.usaiaai && !updatedFilters.canadaiaai) {
-        updatedFilters.iaaiAuction = false;
+    if (
+      (filterName === "usaiaai" || filterName === "canadaiaai") &&
+      !updatedFilters.usaiaai &&
+      !updatedFilters.canadaiaai
+    ) {
+      updatedFilters.iaaiAuction = false;
 
-        // If both IAAI & Copart are off, turn on Copart
-        if (!updatedFilters.copartAuction) {
-            updatedFilters.copartAuction = true;
-            updatedFilters.usacopart = true;
-            updatedFilters.canadacopart = true;
-        }
+      // If both IAAI & Copart are off, turn on Copart
+      if (!updatedFilters.copartAuction) {
+        updatedFilters.copartAuction = true;
+        updatedFilters.usacopart = true;
+        updatedFilters.canadacopart = true;
+      }
     }
 
     // **Ensure at least one filter is always ON**
     if (!updatedFilters.copartAuction && !updatedFilters.iaaiAuction) {
-        // If everything is turned off, turn on Copart by default
-        updatedFilters.copartAuction = true;
-        updatedFilters.usacopart = true;
-        updatedFilters.canadacopart = true;
+      // If everything is turned off, turn on Copart by default
+      updatedFilters.copartAuction = true;
+      updatedFilters.usacopart = true;
+      updatedFilters.canadacopart = true;
     }
 
     setFilters(updatedFilters);
     fetchCars(currentPage, updatedFilters, searchQuery);
-};
-
-
+  };
 
   // Modified handleReset to be more explicit
   const handleReset = async () => {
@@ -764,7 +771,7 @@ const Search = () => {
 
     return activeFilters;
   };
-
+  const { t } = useTranslationApi();
   return (
     <>
       <Layout style={{ minHeight: "100vh" }}>
@@ -799,10 +806,10 @@ const Search = () => {
               }}
             >
               <Title level={4} style={{ margin: 0 }}>
-                Search Filters
+                {t("serach.sFilter")}
               </Title>
               <Button type="link" onClick={handleReset}>
-                Reset All
+                {t("serach.resetAll")}
               </Button>
             </div>
 
@@ -814,7 +821,7 @@ const Search = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <span style={{ marginRight: 8 }}>Select Vehicles Only</span>
+                <span style={{ marginRight: 8 }}>{t("serach.select")}</span>
                 <Switch
                   checked={filters.selectVehiclesOnly}
                   onChange={(checked) =>
@@ -831,7 +838,7 @@ const Search = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <span style={{ marginRight: 8 }}>Buy It Now</span>
+                <span style={{ marginRight: 8 }}>{t("serach.buyIt")}</span>
                 <Switch
                   checked={filters.buyItNow}
                   onChange={(checked) =>
@@ -861,8 +868,8 @@ const Search = () => {
                   },
                 }}
               >
-                <Panel header="Auction" key="auction">
-                  <Space direction="vertical" style={{ width: "100%" }}>
+                <Panel header={t("serach.auction")} key="auction">
+                  {/* <Space direction="vertical" style={{ width: "100%" }}>
                     <div
                       style={{
                         display: "flex",
@@ -870,263 +877,174 @@ const Search = () => {
                         alignItems: "center",
                       }}
                     >
-                      {/* <span>Copart</span>
-                                            <Switch
-                                                checked={filters.copartAuction}
-                                                onChange={(checked) => {
-                                                    if (
-                                                        !checked &&
-                                                        !filters.iaaiAuction
-                                                    ) {
-                                                        return;
-                                                    }
-                                                    handleFilterChange(
-                                                        "copartAuction",
-                                                        checked
-                                                    );
-                                                }}
-                                                style={{
-                                                    backgroundColor: (
-                                                        checked
-                                                    ) =>
-                                                        checked
-                                                            ? "#1677ff"
-                                                            : undefined,
-                                                    transform: "scale(0.6)", // Make the switch smaller
-                                                }}
-                                            />
-                                         */}
-                    </div>
+                    </div> */}
 
-                    {/* <Panel header="Copart" key="copart" className={""}>
-                                                <div
-                                                    style={{
-                                                        display: "flex",
-                                                        justifyContent: "space-between",
-                                                        alignItems: "center",
-                                                        marginBottom: "8px",
-                                                    }}
-                                                >
-                                                    <span>Copart</span>
-                                                    <Switch
-                                                        checked={filters.copartAuction}
-                                                        onChange={(checked) => {
-                                                            handleFilterChange("copartAuction", checked);
-                                                            if (!checked) {
-                                                                handleFilterChange("usacopart", false);
-                                                                handleFilterChange("canadacopart", false);
-                                                            }
-                                                        }}
-                                                        style={{
-                                                            backgroundColor: filters.copartAuction ? "#1677ff" : undefined,
-                                                            transform: "scale(0.6)",
-                                                        }}
-                                                    />
-                                                </div>
-                                             
-                                                <Space direction="vertical" style={{ width: "100%" }}>
-                                                    <div
-                                                        style={{
-                                                            display: "flex",
-                                                            justifyContent: "space-between",
-                                                            alignItems: "center",
-                                                            
-                                                        }}
-                                                    >
-                                                        
-                                                        <span>USA</span>
-                                                        <Switch
-                                                            checked={filters.usacopart}
-                                                            onChange={(checked) => {
-                                                                if (!checked && !filters.usacopart) {
-                                                                    return;
-                                                                }
-                                                                handleFilterChange("usacopart", checked);
-                                                            }}
-                                                            style={{
-                                                                backgroundColor: (checked) =>
-                                                                    checked
-                                                                        ? "#1677ff"
-                                                                        : undefined,
-                                                                transform: "scale(0.6)", // Make the switch smaller
-                                                            }}
-                                                        />
-                                                    </div>
-                                                    <div
-                                                        style={{
-                                                            display: "flex",
-                                                            justifyContent: "space-between",
-                                                            alignItems: "center",
-                                                        }}
-                                                    >
-                                                        <span>Canada</span>
-                                                        <Switch
-                                                            checked={filters.canadacopart}
-                                                            onChange={(checked) => {
-                                                                if (!checked && !filters.canadacopart) {
-                                                                    return;
-                                                                }
-                                                                handleFilterChange("canadacopart", checked);
-                                                            }}
-                                                            style={{
-                                                                backgroundColor: filters.canadacopart
-                                                                    ? "#1677ff"
-                                                                    : undefined,
-                                                                "&:hover": {
-                                                                    backgroundColor: filters.canadacopart
-                                                                        ? "#1677ff"
-                                                                        : undefined,
-                                                                },
-                                                                transform: "scale(0.6)",
-                                                            }}
-                                                        />
-                                                    </div>
-                                                </Space>
-                                            </Panel>
-                           */}
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        fontSize: "24px",
-                        // paddingRight: "10px",
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      fontSize: "20px",
+                      marginBottom: "10px",
+                      // paddingRight: "10px",
+                      fontWeight: "bold",
+                      color: "#1677ff",
+
+                      // paddingRight: "10px",
+                    }}
+                  >
+                    <span>{t("serach.copart")}</span>
+                    <Switch
+                      checked={filters.copartAuction}
+                      onChange={(checked) => {
+                        handleFilterChange("copartAuction", checked);
                       }}
-                    >
-                      <span>Copart</span>
-                      <Switch
-                        checked={filters.copartAuction}
-                        onChange={(checked) => {
-                          handleFilterChange("copartAuction", checked);
-                        }}
-                        style={{
-                          backgroundColor: filters.copartAuction
-                            ? "#1677ff"
-                            : undefined,
-                          transform: "scale(0.6)",
-                          fontSize: "24px",
-                        }}
-                      />
-                    </div>
-                    {filters.copartAuction && (
-                      <Space direction="vertical" style={{ width: "100%" }}>
-                        <div
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                          }}
-                        >
-                          <span>⸰ USA</span>
-                          <Switch
-                            checked={filters.usacopart}
-                            onChange={(checked) => {
-                              handleFilterChange("usacopart", checked);
-                            }}
-                            style={{
-                              backgroundColor: filters.usacopart
-                                ? "#1677ff"
-                                : undefined,
-                              transform: "scale(0.6)",
-                            }}
-                          />
-                        </div>
-                        <div
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                          }}
-                        >
-                          <span>⸰ Canada</span>
-                          <Switch
-                            checked={filters.canadacopart}
-                            onChange={(checked) => {
-                              handleFilterChange("canadacopart", checked);
-                            }}
-                            style={{
-                              backgroundColor: filters.canadacopart
-                                ? "#1677ff"
-                                : undefined,
-                              transform: "scale(0.6)",
-                            }}
-                          />
-                        </div>
-                      </Space>
-                    )}
-
-                    <div
                       style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
+                        backgroundColor: filters.copartAuction
+                          ? "#1677ff"
+                          : undefined,
+                        transform: "scale(0.6)",
                         fontSize: "24px",
                       }}
-                    >
-                      <span>IAAI</span>
-                      <Switch
-                        checked={filters.iaaiAuction}
-                        onChange={(checked) => {
-                          handleFilterChange("iaaiAuction", checked);
-                        }}
+                    />
+                  </div>
+                  {filters.copartAuction && (
+                    <Space direction="vertical" style={{ width: "100%" }}>
+                      <div
                         style={{
-                          backgroundColor: filters.iaaiAuction
-                            ? "#ff4d4f"
-                            : undefined,
-                          transform: "scale(0.6)",
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          paddingLeft: "10px",
+
+                          fontWeight: "bold",
+                          // color: "#808080",
                         }}
-                      />
-                    </div>
-                    {filters.iaaiAuction && (
-                      <Space direction="vertical" style={{ width: "100%" }}>
-                        <div
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
+                      >
+                        <span>⸰ {t("serach.usa")}</span>
+                        <Switch
+                          checked={filters.usacopart}
+                          onChange={(checked) => {
+                            handleFilterChange("usacopart", checked);
                           }}
-                        >
-                          <span>⸰ USA</span>
-                          <Switch
-                            checked={filters.usaiaai}
-                            onChange={(checked) => {
-                              handleFilterChange("usaiaai", checked);
-                            }}
-                            style={{
-                              backgroundColor: filters.usaiaai
-                                ? "#ff4d4f"
-                                : undefined,
-                              transform: "scale(0.6)",
-                            }}
-                          />
-                        </div>
-                        <div
                           style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
+                            backgroundColor: filters.usacopart
+                              ? "#808080"
+                              : undefined,
+                            transform: "scale(0.6)",
                           }}
-                        >
-                          <span>⸰ Canada</span>
-                          <Switch
-                            checked={filters.canadaiaai}
-                            onChange={(checked) => {
-                              handleFilterChange("canadaiaai", checked);
-                            }}
-                            style={{
-                              backgroundColor: filters.canadaiaai
-                                ? "#ff4d4f"
-                                : undefined,
-                              transform: "scale(0.6)",
-                            }}
-                          />
-                        </div>
-                      </Space>
-                    )}
-                  </Space>
+                        />
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          paddingLeft: "10px",
+
+                          fontWeight: "bold",
+                        }}
+                      >
+                        <span>⸰ {t("serach.canada")}</span>
+                        <Switch
+                          checked={filters.canadacopart}
+                          onChange={(checked) => {
+                            handleFilterChange("canadacopart", checked);
+                          }}
+                          style={{
+                            backgroundColor: filters.canadacopart
+                              ? "#808080"
+                              : undefined,
+                            transform: "scale(0.6)",
+                          }}
+                        />
+                      </div>
+                    </Space>
+                  )}
+
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      fontSize: "20px",
+                      marginBottom: "10px",
+                      // paddingRight: "10px",
+                      fontWeight: "bold",
+                      color: "#ff4d4f",
+                      marginTop: "10px",
+                    }}
+                  >
+                    <span>{t("serach.iaai")}</span>
+                    <Switch
+                      checked={filters.iaaiAuction}
+                      onChange={(checked) => {
+                        handleFilterChange("iaaiAuction", checked);
+                      }}
+                      style={{
+                        backgroundColor: filters.iaaiAuction
+                          ? "#ff4d4f"
+                          : undefined,
+                        transform: "scale(0.6)",
+                      }}
+                    />
+                  </div>
+                  {filters.iaaiAuction && (
+                    <Space direction="vertical" style={{ width: "100%" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          paddingLeft: "10px",
+
+                          fontWeight: "bold",
+                        }}
+                      >
+                        <span>⸰ {t("serach.usa")}</span>
+                        <Switch
+                          checked={filters.usaiaai}
+                          onChange={(checked) => {
+                            handleFilterChange("usaiaai", checked);
+                          }}
+                          style={{
+                            backgroundColor: filters.usaiaai
+                              ? "#808080"
+                              : undefined,
+                            transform: "scale(0.6)",
+                          }}
+                        />
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          paddingLeft: "10px",
+
+                          fontWeight: "bold",
+                        }}
+                      >
+                        <span>⸰ {t("serach.canada")}</span>
+                        <Switch
+                          checked={filters.canadaiaai}
+                          onChange={(checked) => {
+                            handleFilterChange("canadaiaai", checked);
+                          }}
+                          style={{
+                            backgroundColor: filters.canadaiaai
+                              ? "#808080"
+                              : undefined,
+                            transform: "scale(0.6)",
+                          }}
+                        />
+                      </div>
+                    </Space>
+                  )}
+                  {/* </Space> */}
                 </Panel>
 
-                <Panel header="Make" key="1">
+                <Panel header={t("serach.make")} key="1">
                   <SearchableCheckboxGroup
                     options={manufacturers.map((m) => ({
                       label: (
@@ -1148,11 +1066,11 @@ const Search = () => {
                     onChange={(value: any) =>
                       handleFilterChange("selectedBrands", value)
                     }
-                    placeholder="Search makes..."
+                    placeholder={t("serach.sMakes")}
                   />
                 </Panel>
 
-                <Panel header="Model" key="10">
+                <Panel header={t("serach.model")} key="10">
                   <SearchableCheckboxGroup
                     options={models.map((m) => ({
                       label: (
@@ -1174,11 +1092,11 @@ const Search = () => {
                     onChange={(value) =>
                       handleFilterChange("selectedModel", value)
                     }
-                    placeholder="Search models..."
+                    placeholder={t("serach.sModel")}
                   />
                 </Panel>
 
-                <Panel header="Condition" key="Condition">
+                <Panel header={t("serach.condition")} key="Condition">
                   <Space direction="vertical" style={{ width: "100%" }}>
                     <div>
                       <Checkbox
@@ -1191,7 +1109,7 @@ const Search = () => {
                           )
                         }
                       >
-                        Run And Drive
+                        {t("serach.run")}
                       </Checkbox>
                       <br />
 
@@ -1202,7 +1120,7 @@ const Search = () => {
                           handleFilterChange("forRepair", !filters.forRepair)
                         }
                       >
-                        For Repair
+                        {t("serach.fRepair")}
                       </Checkbox>
                       <br />
                       <Checkbox
@@ -1215,7 +1133,7 @@ const Search = () => {
                           )
                         }
                       >
-                        To Be Dismantled
+                        {t("serach.dismantled")}
                       </Checkbox>
                       <br />
                       <Checkbox
@@ -1225,7 +1143,7 @@ const Search = () => {
                           handleFilterChange("not_run", !filters.not_run)
                         }
                       >
-                        Not Run
+                        {t("serach.notRun")}
                       </Checkbox>
                       <br />
                       <Checkbox
@@ -1235,7 +1153,7 @@ const Search = () => {
                           handleFilterChange("used", !filters.used)
                         }
                       >
-                        Used
+                        {t("serach.used")}
                       </Checkbox>
                       <br />
                       <Checkbox
@@ -1248,7 +1166,7 @@ const Search = () => {
                           )
                         }
                       >
-                        Unconfirmed
+                        {t("serach.unconfirmed")}
                       </Checkbox>
                       <br />
                       <Checkbox
@@ -1261,7 +1179,7 @@ const Search = () => {
                           )
                         }
                       >
-                        Engine Starts
+                        {t("serach.engineStart")}
                       </Checkbox>
                       <br />
                       <Checkbox
@@ -1271,13 +1189,13 @@ const Search = () => {
                           handleFilterChange("enhanced", !filters.enhanced)
                         }
                       >
-                        Enhanced
+                        {t("serach.enhanced")}
                       </Checkbox>
                     </div>
                   </Space>
                 </Panel>
 
-                <Panel header="Year Range" key="13">
+                <Panel header={t("serach.yrRange")} key="13">
                   <RangeFilterWithInput
                     min={1900}
                     max={new Date().getFullYear()}
@@ -1286,7 +1204,7 @@ const Search = () => {
                   />
                 </Panel>
 
-                <Panel header="Odometer Range" key="6">
+                <Panel header={t("serach.odometer")} key="6">
                   <RangeFilterWithInput
                     min={1}
                     max={250000}
@@ -1298,7 +1216,7 @@ const Search = () => {
                   />
                 </Panel>
 
-                <Panel header="Engine Size" key="2">
+                <Panel header={t("serach.engineSize")} key="2">
                   <RangeFilterWithInput
                     min={0}
                     max={16}
@@ -1310,11 +1228,11 @@ const Search = () => {
                   />
                 </Panel>
 
-                <Panel header="Transmission" key="3">
+                <Panel header={t("serach.transmission")} key="3">
                   <Checkbox.Group
                     options={[
-                      { label: "Automatic", value: 1 },
-                      { label: "Manual", value: 2 },
+                      { label: t("serach.auto"), value: 2 },
+                      { label: t("serach.manual"), value: 1 },
                     ]}
                     onChange={(values) =>
                       handleFilterChange("transmission", values)
@@ -1322,7 +1240,7 @@ const Search = () => {
                   />
                 </Panel>
 
-                <Panel header="Fuel Type" key="4">
+                <Panel header={t("serach.fuelType")} key="4">
                   <SearchableCheckboxGroup
                     options={fuelTypes.map((type) => ({
                       label: type.name,
@@ -1332,11 +1250,11 @@ const Search = () => {
                     onChange={(values) =>
                       handleFilterChange("fuelType", values)
                     }
-                    placeholder="Search fuel types..."
+                    placeholder={t("serach.SfuelType")}
                   />
                 </Panel>
 
-                <Panel header="Cylinders" key="5">
+                <Panel header={t("serach.cylinders")} key="5">
                   <SearchableCheckboxGroup
                     options={cylinderOptions.map((cyl) => ({
                       label: cyl.toString(),
@@ -1346,11 +1264,11 @@ const Search = () => {
                     onChange={(values) =>
                       handleFilterChange("cylinders", values)
                     }
-                    placeholder="Search cylinders..."
+                    placeholder={t("serach.sCylinders")}
                   />
                 </Panel>
 
-                <Panel header="Colors" key="7">
+                <Panel header={t("serach.colors")} key="7">
                   <SearchableCheckboxGroup
                     options={colorOptions.map((color) => ({
                       label: color.name,
@@ -1360,11 +1278,11 @@ const Search = () => {
                     onChange={(values) =>
                       handleFilterChange("selectedColors", values)
                     }
-                    placeholder="Search colors..."
+                    placeholder={t("serach.sColors")}
                   />
                 </Panel>
 
-                <Panel header="Body Style" key="8">
+                <Panel header={t("serach.bodyStyle")} key="8">
                   <SearchableCheckboxGroup
                     options={bodyStyles.map((style) => ({
                       label: style.name,
@@ -1374,11 +1292,11 @@ const Search = () => {
                     onChange={(values) =>
                       handleFilterChange("selectedBodyStyles", values)
                     }
-                    placeholder="Search body styles..."
+                    placeholder={t("serach.sBodyStyle")}
                   />
                 </Panel>
 
-                <Panel header="Location" key="9">
+                <Panel header={t("serach.location")} key="9">
                   <SearchableCheckboxGroup
                     options={locations.map((loc) => ({
                       label: loc.name,
@@ -1388,11 +1306,11 @@ const Search = () => {
                     onChange={(values) =>
                       handleFilterChange("selectedLocations", values)
                     }
-                    placeholder="Search locations..."
+                    placeholder={t("serach.sLocation")}
                   />
                 </Panel>
 
-                <Panel header="Primary Damage" key="11">
+                <Panel header={t("serach.primary")} key="11">
                   <SearchableCheckboxGroup
                     options={primaryDamages.map((damage) => ({
                       label: damage.name,
@@ -1402,11 +1320,11 @@ const Search = () => {
                     onChange={(values) =>
                       handleFilterChange("selectedPrimaryDamages", values)
                     }
-                    placeholder="Search damages..."
+                    placeholder={t("serach.sDamages")}
                   />
                 </Panel>
 
-                <Panel header="Seller" key="12">
+                <Panel header={t("serach.seller")} key="12">
                   <SearchableCheckboxGroup
                     options={sellers.map((seller) => ({
                       label: seller.name,
@@ -1416,7 +1334,7 @@ const Search = () => {
                     onChange={(values) =>
                       handleFilterChange("selectedSellers", values)
                     }
-                    placeholder="Search sellers..."
+                    placeholder={t("serach.sSeller")}
                   />
                 </Panel>
               </Collapse>
@@ -1425,7 +1343,7 @@ const Search = () => {
         </Sider>
         {/* Drawer for Mobile Screens */}
         <Drawer
-          title="Filters"
+          title={t("serach.filters")}
           placement="left"
           onClose={onClose}
           visible={visible}
@@ -1434,7 +1352,7 @@ const Search = () => {
           <Space direction="vertical" style={{ width: "100%" }} size="middle">
             {/* Quick Filters Section */}
             <div>
-              <Title level={5}>Quick Filters</Title>
+              <Title level={5}>{t("serach.qFilters")}</Title>
               <Space direction="vertical" style={{ width: "100%" }}>
                 <div
                   style={{
@@ -1442,7 +1360,7 @@ const Search = () => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <span>Select Vehicles Only</span>
+                  <span>{t("serach.sVehicals")}</span>
                   <Switch
                     checked={filters.selectVehiclesOnly}
                     onChange={(checked) =>
@@ -1456,7 +1374,7 @@ const Search = () => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <span>Buy It Now</span>
+                  <span>{t("serach.buyItNow")}</span>
                   <Switch
                     checked={filters.buyItNow}
                     onChange={(checked) =>
@@ -1483,151 +1401,183 @@ const Search = () => {
                 },
               }}
             >
-              <Panel header="Auction" key="auction">
-                <Space direction="vertical" style={{ width: "100%" }}>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      fontSize: "24px",
-                      // paddingRight: "10px",
-                    }}
-                  >
-                    <span>Copart</span>
-                    <Switch
-                      checked={filters.copartAuction}
-                      onChange={(checked) => {
-                        handleFilterChange("copartAuction", checked);
-                      }}
+              <Panel header={t("serach.auction")} key="auction">
+                {/* <Space direction="vertical" style={{ width: "100%" }}>
+                    <div
                       style={{
-                        backgroundColor: filters.copartAuction
-                          ? "#1677ff"
-                          : undefined,
-                        transform: "scale(0.6)",
-                        fontSize: "24px",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
                       }}
-                    />
-                  </div>
-                  {filters.copartAuction && (
-                    <Space direction="vertical" style={{ width: "100%" }}>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          alignItems: "center",
-                        }}
-                      >
-                        <span>USA</span>
-                        <Switch
-                          checked={filters.usacopart}
-                          onChange={(checked) => {
-                            handleFilterChange("usacopart", checked);
-                          }}
-                          style={{
-                            backgroundColor: filters.usacopart
-                              ? "#1677ff"
-                              : undefined,
-                            transform: "scale(0.6)",
-                          }}
-                        />
-                      </div>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          alignItems: "center",
-                        }}
-                      >
-                        <span>Canada</span>
-                        <Switch
-                          checked={filters.canadacopart}
-                          onChange={(checked) => {
-                            handleFilterChange("canadacopart", checked);
-                          }}
-                          style={{
-                            backgroundColor: filters.canadacopart
-                              ? "#1677ff"
-                              : undefined,
-                            transform: "scale(0.6)",
-                          }}
-                        />
-                      </div>
-                    </Space>
-                  )}
+                    >
+                    </div> */}
 
-                  <div
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    fontSize: "20px",
+                    marginBottom: "10px",
+                    // paddingRight: "10px",
+                    fontWeight: "bold",
+                    color: "#1677ff",
+
+                    // paddingRight: "10px",
+                  }}
+                >
+                  <span>{t("serach.copart")}</span>
+                  <Switch
+                    checked={filters.copartAuction}
+                    onChange={(checked) => {
+                      handleFilterChange("copartAuction", checked);
+                    }}
                     style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
+                      backgroundColor: filters.copartAuction
+                        ? "#1677ff"
+                        : undefined,
+                      transform: "scale(0.6)",
                       fontSize: "24px",
                     }}
-                  >
-                    <span>IAAI</span>
-                    <Switch
-                      checked={filters.iaaiAuction}
-                      onChange={(checked) => {
-                        handleFilterChange("iaaiAuction", checked);
-                      }}
+                  />
+                </div>
+                {filters.copartAuction && (
+                  <Space direction="vertical" style={{ width: "100%" }}>
+                    <div
                       style={{
-                        backgroundColor: filters.iaaiAuction
-                          ? "#ff4d4f"
-                          : undefined,
-                        transform: "scale(0.6)",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        paddingLeft: "10px",
+
+                        fontWeight: "bold",
+                        // color: "#808080",
                       }}
-                    />
-                  </div>
-                  {filters.iaaiAuction && (
-                    <Space direction="vertical" style={{ width: "100%" }}>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          alignItems: "center",
+                    >
+                      <span>⸰ {t("serach.usa")}</span>
+                      <Switch
+                        checked={filters.usacopart}
+                        onChange={(checked) => {
+                          handleFilterChange("usacopart", checked);
                         }}
-                      >
-                        <span>USA</span>
-                        <Switch
-                          checked={filters.usaiaai}
-                          onChange={(checked) => {
-                            handleFilterChange("usaiaai", checked);
-                          }}
-                          style={{
-                            backgroundColor: filters.usaiaai
-                              ? "#ff4d4f"
-                              : undefined,
-                            transform: "scale(0.6)",
-                          }}
-                        />
-                      </div>
-                      <div
                         style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          alignItems: "center",
+                          backgroundColor: filters.usacopart
+                            ? "#808080"
+                            : undefined,
+                          transform: "scale(0.6)",
                         }}
-                      >
-                        <span>Canada</span>
-                        <Switch
-                          checked={filters.canadaiaai}
-                          onChange={(checked) => {
-                            handleFilterChange("canadaiaai", checked);
-                          }}
-                          style={{
-                            backgroundColor: filters.canadaiaai
-                              ? "#ff4d4f"
-                              : undefined,
-                            transform: "scale(0.6)",
-                          }}
-                        />
-                      </div>
-                    </Space>
-                  )}
-                </Space>
+                      />
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        paddingLeft: "10px",
+
+                        fontWeight: "bold",
+                      }}
+                    >
+                      <span>⸰ {t("serach.canada")}</span>
+                      <Switch
+                        checked={filters.canadacopart}
+                        onChange={(checked) => {
+                          handleFilterChange("canadacopart", checked);
+                        }}
+                        style={{
+                          backgroundColor: filters.canadacopart
+                            ? "#808080"
+                            : undefined,
+                          transform: "scale(0.6)",
+                        }}
+                      />
+                    </div>
+                  </Space>
+                )}
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    fontSize: "20px",
+                    marginBottom: "10px",
+                    // paddingRight: "10px",
+                    fontWeight: "bold",
+                    color: "#ff4d4f",
+                    marginTop: "10px",
+                  }}
+                >
+                  <span>{t("serach.iaai")}</span>
+                  <Switch
+                    checked={filters.iaaiAuction}
+                    onChange={(checked) => {
+                      handleFilterChange("iaaiAuction", checked);
+                    }}
+                    style={{
+                      backgroundColor: filters.iaaiAuction
+                        ? "#ff4d4f"
+                        : undefined,
+                      transform: "scale(0.6)",
+                    }}
+                  />
+                </div>
+                {filters.iaaiAuction && (
+                  <Space direction="vertical" style={{ width: "100%" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        paddingLeft: "10px",
+
+                        fontWeight: "bold",
+                      }}
+                    >
+                      <span>⸰ {t("serach.usa")}</span>
+                      <Switch
+                        checked={filters.usaiaai}
+                        onChange={(checked) => {
+                          handleFilterChange("usaiaai", checked);
+                        }}
+                        style={{
+                          backgroundColor: filters.usaiaai
+                            ? "#808080"
+                            : undefined,
+                          transform: "scale(0.6)",
+                        }}
+                      />
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        paddingLeft: "10px",
+
+                        fontWeight: "bold",
+                      }}
+                    >
+                      <span>⸰ {t("serach.canada")}</span>
+                      <Switch
+                        checked={filters.canadaiaai}
+                        onChange={(checked) => {
+                          handleFilterChange("canadaiaai", checked);
+                        }}
+                        style={{
+                          backgroundColor: filters.canadaiaai
+                            ? "#808080"
+                            : undefined,
+                          transform: "scale(0.6)",
+                        }}
+                      />
+                    </div>
+                  </Space>
+                )}
+                {/* </Space> */}
               </Panel>
 
-              <Panel header="Make" key="1">
+              <Panel header={t("serach.make")} key="1">
                 <SearchableCheckboxGroup
                   options={manufacturers.map((m) => ({
                     label: (
@@ -1643,41 +1593,17 @@ const Search = () => {
                       </div>
                     ),
                     value: m.id,
+                    count: m.cars_qty,
                   }))}
                   value={filters.selectedBrands}
-                  onChange={(value) =>
+                  onChange={(value: any) =>
                     handleFilterChange("selectedBrands", value)
                   }
-                  placeholder="Search makes..."
+                  placeholder={t("serach.sMakes")}
                 />
               </Panel>
 
-              <Panel header="Model" key="10">
-                <SearchableCheckboxGroup
-                  options={models.map((m) => ({
-                    label: (
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          alignItems: "center",
-                          width: "100%",
-                        }}
-                      >
-                        {m.name}
-                      </div>
-                    ),
-                    value: m.id,
-                  }))}
-                  value={filters.selectedModel}
-                  onChange={(value) =>
-                    handleFilterChange("selectedModel", value)
-                  }
-                  placeholder="Search models..."
-                />
-              </Panel>
-
-              <Panel header="Condition" key="Condition">
+              <Panel header={t("serach.condition")} key="Condition">
                 <Space direction="vertical" style={{ width: "100%" }}>
                   <div>
                     <Checkbox
@@ -1687,7 +1613,7 @@ const Search = () => {
                         handleFilterChange("runAndDrive", !filters.runAndDrive)
                       }
                     >
-                      Run And Drive
+                      {t("serach.run")}
                     </Checkbox>
                     <br />
 
@@ -1698,7 +1624,7 @@ const Search = () => {
                         handleFilterChange("forRepair", !filters.forRepair)
                       }
                     >
-                      For Repair
+                      {t("serach.fRepair")}
                     </Checkbox>
                     <br />
                     <Checkbox
@@ -1711,7 +1637,7 @@ const Search = () => {
                         )
                       }
                     >
-                      To Be Dismantled
+                      {t("serach.dismantled")}
                     </Checkbox>
                     <br />
                     <Checkbox
@@ -1721,7 +1647,7 @@ const Search = () => {
                         handleFilterChange("not_run", !filters.not_run)
                       }
                     >
-                      Not Run
+                      {t("serach.notRun")}
                     </Checkbox>
                     <br />
                     <Checkbox
@@ -1729,7 +1655,7 @@ const Search = () => {
                       checked={filters.used}
                       onClick={() => handleFilterChange("used", !filters.used)}
                     >
-                      Used
+                      {t("serach.used")}
                     </Checkbox>
                     <br />
                     <Checkbox
@@ -1739,7 +1665,7 @@ const Search = () => {
                         handleFilterChange("unconfirmed", !filters.unconfirmed)
                       }
                     >
-                      Unconfirmed
+                      {t("serach.unconfirmed")}
                     </Checkbox>
                     <br />
                     <Checkbox
@@ -1752,7 +1678,7 @@ const Search = () => {
                         )
                       }
                     >
-                      Engine Starts
+                      {t("serach.engineStart")}
                     </Checkbox>
                     <br />
                     <Checkbox
@@ -1762,12 +1688,13 @@ const Search = () => {
                         handleFilterChange("enhanced", !filters.enhanced)
                       }
                     >
-                      Enhanced
+                      {t("serach.enhanced")}
                     </Checkbox>
                   </div>
                 </Space>
               </Panel>
-              <Panel header="Year Range" key="13">
+
+              <Panel header={t("serach.yrRange")} key="13">
                 <RangeFilterWithInput
                   min={1900}
                   max={new Date().getFullYear()}
@@ -1776,7 +1703,7 @@ const Search = () => {
                 />
               </Panel>
 
-              <Panel header="Odometer Range" key="6">
+              <Panel header={t("serach.odometer")} key="6">
                 <RangeFilterWithInput
                   min={1}
                   max={250000}
@@ -1786,10 +1713,9 @@ const Search = () => {
                   }
                   step={1000}
                 />
-                <Text>Selected Range: {filters.odometerRange.join(", ")}</Text>
               </Panel>
 
-              <Panel header="Engine Size" key="2">
+              <Panel header={t("serach.engineSize")} key="2">
                 <RangeFilterWithInput
                   min={0}
                   max={16}
@@ -1801,20 +1727,19 @@ const Search = () => {
                 />
               </Panel>
 
-              <Panel header="Transmission" key="3">
+              <Panel header={t("serach.transmission")} key="3">
                 <Checkbox.Group
                   options={[
-                    { label: "Automatic", value: 1 },
-                    { label: "Manual", value: 2 },
+                    { label: t("serach.auto"), value: 2 },
+                    { label: t("serach.manual"), value: 1 },
                   ]}
-                  value={filters.transmission}
                   onChange={(values) =>
                     handleFilterChange("transmission", values)
                   }
                 />
               </Panel>
 
-              <Panel header="Fuel Type" key="4">
+              <Panel header={t("serach.fuelType")} key="4">
                 <SearchableCheckboxGroup
                   options={fuelTypes.map((type) => ({
                     label: type.name,
@@ -1822,11 +1747,11 @@ const Search = () => {
                   }))}
                   value={filters.fuelType}
                   onChange={(values) => handleFilterChange("fuelType", values)}
-                  placeholder="Search fuel types..."
+                  placeholder={t("serach.SfuelType")}
                 />
               </Panel>
 
-              <Panel header="Cylinders" key="5">
+              <Panel header={t("serach.cylinders")} key="5">
                 <SearchableCheckboxGroup
                   options={cylinderOptions.map((cyl) => ({
                     label: cyl.toString(),
@@ -1834,11 +1759,11 @@ const Search = () => {
                   }))}
                   value={filters.cylinders}
                   onChange={(values) => handleFilterChange("cylinders", values)}
-                  placeholder="Search cylinders..."
+                  placeholder={t("serach.sCylinders")}
                 />
               </Panel>
 
-              <Panel header="Colors" key="7">
+              <Panel header={t("serach.colors")} key="7">
                 <SearchableCheckboxGroup
                   options={colorOptions.map((color) => ({
                     label: color.name,
@@ -1848,11 +1773,11 @@ const Search = () => {
                   onChange={(values) =>
                     handleFilterChange("selectedColors", values)
                   }
-                  placeholder="Search colors..."
+                  placeholder={t("serach.sColors")}
                 />
               </Panel>
 
-              <Panel header="Body Style" key="8">
+              <Panel header={t("serach.bodyStyle")} key="8">
                 <SearchableCheckboxGroup
                   options={bodyStyles.map((style) => ({
                     label: style.name,
@@ -1862,11 +1787,11 @@ const Search = () => {
                   onChange={(values) =>
                     handleFilterChange("selectedBodyStyles", values)
                   }
-                  placeholder="Search body styles..."
+                  placeholder={t("serach.sBodyStyle")}
                 />
               </Panel>
 
-              <Panel header="Location" key="9">
+              <Panel header={t("serach.location")} key="9">
                 <SearchableCheckboxGroup
                   options={locations.map((loc) => ({
                     label: loc.name,
@@ -1876,11 +1801,11 @@ const Search = () => {
                   onChange={(values) =>
                     handleFilterChange("selectedLocations", values)
                   }
-                  placeholder="Search locations..."
+                  placeholder={t("serach.sLocation")}
                 />
               </Panel>
 
-              <Panel header="Primary Damage" key="11">
+              <Panel header={t("serach.primary")} key="11">
                 <SearchableCheckboxGroup
                   options={primaryDamages.map((damage) => ({
                     label: damage.name,
@@ -1890,11 +1815,11 @@ const Search = () => {
                   onChange={(values) =>
                     handleFilterChange("selectedPrimaryDamages", values)
                   }
-                  placeholder="Search damages..."
+                  placeholder={t("serach.sDamages")}
                 />
               </Panel>
 
-              <Panel header="Seller" key="12">
+              <Panel header={t("serach.seller")} key="12">
                 <SearchableCheckboxGroup
                   options={sellers.map((seller) => ({
                     label: seller.name,
@@ -1904,7 +1829,7 @@ const Search = () => {
                   onChange={(values) =>
                     handleFilterChange("selectedSellers", values)
                   }
-                  placeholder="Search sellers..."
+                  placeholder={t("serach.sSeller")}
                 />
               </Panel>
             </Collapse>

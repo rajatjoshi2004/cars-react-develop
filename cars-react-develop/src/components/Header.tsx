@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/Logo.png";
 import { isAuthenticated } from "../utils/auth";
 import LanguageSelector from "./LanguageSelector/LanguageSelector";
+import { useTranslation } from 'react-i18next';
+import { useTranslationApi } from "../hooks/useTranslationApi";
 
 const { useBreakpoint } = Grid;
 
@@ -19,6 +21,7 @@ const AppHeader = () => {
     const logoSize = screens.md ? 4 : 5;
 
     const auth = isAuthenticated();
+    const { t } = useTranslationApi()
 
     const logoutHandler = () => {
         localStorage.clear();
@@ -29,10 +32,10 @@ const AppHeader = () => {
     const menu = (
         <Menu>
             <Menu.Item key="dashboard">
-                <Link to="myaccount">Dashboard</Link>
+                <Link to="myaccount">{t('header.dashboard')}</Link>
             </Menu.Item>
             <Menu.Item key="security">
-                <Link to="/security">Profile</Link>
+                <Link to="/security">{t('header.profile')}</Link>
             </Menu.Item>
         </Menu>
     );
@@ -68,8 +71,10 @@ const AppHeader = () => {
                 )}
                 <div>
                     <LanguageSelector />
+                           
+                           
                 </div>
-
+                
                 {/* Buttons on the right */}
                 <div style={styles.buttonContainer}>
                     {!auth ? (
@@ -80,7 +85,7 @@ const AppHeader = () => {
                                     icon={<UserOutlined />}
                                     style={styles.avatar}
                                 />
-                                <span className="h-fit">SIGN IN</span>
+                                <span className="h-fit">{t('header.signIn')}</span>
                             </Button>
                         </Link>
                     ) : (
@@ -91,7 +96,6 @@ const AppHeader = () => {
                                     icon={<UserOutlined />}
                                     style={styles.avatar}
                                 />
-                                <span className="h-fit">My Account</span>
                             </Button>
                         </Dropdown>
                     )}
@@ -101,8 +105,7 @@ const AppHeader = () => {
                                 type="primary"
                                 style={styles.registerButton}
                             >
-                                REGISTER NOW
-                            </Button>
+                                {t('registerForm.register')}                            </Button>
                         </Link>
                     ) : (
                         <Button
@@ -110,9 +113,10 @@ const AppHeader = () => {
                             type="text"
                             style={styles.signInButton}
                         >
-                            Logout
+                            {t('header.logout')}
                         </Button>
                     )}
+                 
                 </div>
                 {screens.lg && (
                     <div className="navigation-panel">

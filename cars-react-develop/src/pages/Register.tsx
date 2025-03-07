@@ -2,10 +2,13 @@ import React from "react";
 import { Row, Col, Typography } from "antd";
 // import "./HeroSection.css"; // Custom styles
 import RegisterForm from "../components/registerForm/RegisterForm";
+import { useTranslation } from 'react-i18next';
+import { useTranslationApi } from "../hooks/useTranslationApi";
 
 const { Title, Paragraph } = Typography;
 
 const HeroSection: React.FC = () => {
+    const { t } = useTranslationApi()
     return (
         <div className="">
             <Row
@@ -25,15 +28,14 @@ const HeroSection: React.FC = () => {
                         className=""
                         style={{ color: "black !important" }}
                     >
-                        Quick Registration – Register for FREE in less than 30
-                        seconds
+                       {t('header.herotitle')}
                     </Title>
                     <Paragraph className="hero-subtitle text-black">
                         <ul style={{ color: "black" }}>
-                            <li>✔ Access to over 300,000 Vehicles</li>
-                            <li>✔ No Dealer License Required</li>
-                            <li>✔ Easy Bidding, Buying and Shipping</li>
-                            <li>✔ 96% Customer Satisfaction Rate</li>
+                            <li>✔ {t('register.subtitle')}</li>
+                            <li>✔ {t('register.subtitle2')}</li>
+                            <li>✔ {t('register.subtitle3')}</li>
+                            <li>✔ {t('register.subtitle4')}</li>
                         </ul>
                     </Paragraph>
                 </Col>
