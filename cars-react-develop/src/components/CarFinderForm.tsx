@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { apiCall } from "../utils/api/API";
 import { Manufacturer } from "../types/interfaces";
 import { Model } from "../pages/Search/Search";
+import { useTranslation } from 'react-i18next';
+import { useTranslationApi } from "../hooks/useTranslationApi";
 
 const { Option } = Select;
 
@@ -134,7 +136,7 @@ const CarFinderForm = () => {
 
         navigate(`/search?${queryParams.toString()}`);
     };
-
+    const { t } = useTranslationApi();
     return (
         <div
             className="car-finder-form"
@@ -156,7 +158,7 @@ const CarFinderForm = () => {
                     color: "black",
                 }}
             >
-                Auction Car Finder
+                {t('otp.auctionfind')}
             </h2>
 
             <Row gutter={[16, 24]}>
@@ -168,7 +170,7 @@ const CarFinderForm = () => {
                             fontWeight: "500",
                         }}
                     >
-                        Make
+                        {t('search.make')}
                     </label>
                     <Select
                         placeholder="Select Make"
@@ -203,10 +205,10 @@ const CarFinderForm = () => {
                             fontWeight: "500",
                         }}
                     >
-                        Model
+                        {t('search.model')}
                     </label>
                     <Select
-                        placeholder="Select Model"
+                        placeholder={t('otp.smodel')}
                         style={{ width: "100%", height: "46px" }}
                         disabled={!formState.manufacturerId}
                         onChange={handleModelChange}
@@ -233,10 +235,10 @@ const CarFinderForm = () => {
                             fontWeight: "500",
                         }}
                     >
-                        From Year
+                        {t('otp.fyr')}
                     </label>
                     <Select
-                        placeholder="Select From Year"
+                        placeholder={t('otp.sfyr')}
                         style={{ width: "100%", height: "46px" }}
                         onChange={handleFromYearChange}
                         value={formState.fromYear}
@@ -257,10 +259,10 @@ const CarFinderForm = () => {
                             fontWeight: "500",
                         }}
                     >
-                        To Year
+                        {t('otp.tyr')}
                     </label>
                     <Select
-                        placeholder="Select To Year"
+                        placeholder={t('otp.styr')}
                         style={{ width: "100%", height: "46px" }}
                         onChange={handleToYearChange}
                         value={formState.toYear}
@@ -281,7 +283,7 @@ const CarFinderForm = () => {
                             fontWeight: "500",
                         }}
                     >
-                        Location
+                        {t('search.location')}
                     </label>
                     <Select
                         defaultValue="All locations"

@@ -1,6 +1,8 @@
 import { ClockCircleOutlined } from "@ant-design/icons";
 import { Button, Col, Row, Space, Typography } from "antd";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from 'react-i18next';
+import { useTranslationApi } from "../hooks/useTranslationApi";
 
 const { Text, Title } = Typography;
 
@@ -50,7 +52,7 @@ const RenderAuctionStatus: React.FC = ({ lot }) => {
 
     // Format the time left as a string
     const formattedTimeLeft = `${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`;
-
+    const { t } = useTranslationApi();
     return (
         <div className="auction-status">
             <div
@@ -81,7 +83,7 @@ const RenderAuctionStatus: React.FC = ({ lot }) => {
             >
                 <Row justify="space-around" align="middle">
                     <Col>
-                        <Text style={{ color: "#64748B" }}>Current Bid:</Text>
+                        <Text style={{ color: "#64748B" }}>{t(t('header.currentBid'))}:</Text>
                         <br />
                         <Text
                             className="flex justify-center"
@@ -93,7 +95,7 @@ const RenderAuctionStatus: React.FC = ({ lot }) => {
                     </Col>
                     {buyNowPrice > 0 && (
                         <Col>
-                            <Text style={{ color: "#64748B" }}>Buy Now:</Text>
+                            <Text style={{ color: "#64748B" }}>{t('carDetails.buyNow')}:</Text>
                             <br />
                             <Text
                                 className="flex justify-center"

@@ -65,6 +65,8 @@ const fallbackTranslations = {
       cnfnewpassword: "Confirm New Password",
       vehical : "Vehical",
       action : "Action",
+      
+
     },
     landing: {
       viewInventory: "View Inventory"
@@ -178,7 +180,10 @@ const fallbackTranslations = {
       smsg2:"Showing",
       smsg3:"of",
       smsg4:"Listings",
-
+      saledoc:"Sale doc.",
+      milage:"Milage",
+      estprice:"Est. Price",
+      
 
     },
     carDetails:{
@@ -246,6 +251,20 @@ const fallbackTranslations = {
       confirmnewpassword: "Confirm New Password",
       currentemail: "Current Email",
       confirmemail: "Confirm Email",
+      verifying  : "Verifying...",
+      accverify : "Account Verified Successfully!",
+      invalid : "Invalid or Already Verified Token",
+      checkemail : "Please check your email for the correct link.",
+      goRegister : "Go to Register",
+      redirect : "You will be redirected to the login page shortly.",
+      success : "Success",
+      auctionfind:"Auction Car Finder",
+      smodel:"Select Model",
+      fyr:"From Year",
+      sfyr:"Select From Year",
+      tyr:"To Year",
+      styr:"Select To Year",
+
 
     },
     calc: {
@@ -412,6 +431,9 @@ const fallbackTranslations = {
       smsg2: "Показване",
       smsg3: "на",
       smsg4: "Обяви",
+      saledoc: "Документация за продажба",
+      milage: "Пробег",
+      estprice: "Оценена цена",
       
     },
     carDetails: {
@@ -479,6 +501,19 @@ const fallbackTranslations = {
           confirmnewpassword: "Потвърдете новата парола",
           currentemail: "Текущ имейл",
           confirmemail: "Потвърдете имейла",
+          verifying: "Проверка...",
+          accverify: "Акаунтът е успешно потвърден!",
+          invalid: "Невалиден или вече потвърден токен",
+          checkemail: "Моля, проверете имейла си за правилната връзка.",
+          goRegister: "Отидете на регистрация",
+          redirect: "Ще бъдете пренасочени към страницата за вход скоро.",
+          success: "Успех",
+          auctionfind: "Търсачка за автомобили на търг",
+          smodel: "Изберете модел",
+          fyr: "От година",
+          sfyr: "Изберете от година",
+          tyr: "До година",
+          styr: "Изберете до година",
         },
         calc: {
           title: "Въведете вашата оферта",
