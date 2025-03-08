@@ -61,6 +61,10 @@ const fallbackTranslations = {
       color : "Color",
       lotNumber: "Lot Number",
       remove : "Remove",
+      newEmail: "New Email",
+      cnfnewpassword: "Confirm New Password",
+      vehical : "Vehical",
+      action : "Action",
     },
     landing: {
       viewInventory: "View Inventory"
@@ -101,7 +105,7 @@ const fallbackTranslations = {
       terms: "Terms and Service",
       registerNow: "Register Now",
     },
-    serach:{
+    search:{
       sFilter:" Search Filters",
       resetAll : " Reset All",
       select: "Select Vehicles Only",
@@ -169,6 +173,11 @@ const fallbackTranslations = {
       engine: "Engine",
       color: "Color",
       bids: "Bids",
+      text2: " Discover Your Right Car",
+      smsg1:"results for",
+      smsg2:"Showing",
+      smsg3:"of",
+      smsg4:"Listings",
 
 
     },
@@ -220,7 +229,6 @@ const fallbackTranslations = {
       newemail: "New Email",
       requird : "This field is required",
       msg2: "Please enter a valid email address",
-      confirmemail: "Confirm Email",
       msg3: "Please confirm your email",
       cnfirmnewemail: "Confirm New Email",
       msg4: "Please confirm your new email",
@@ -236,6 +244,8 @@ const fallbackTranslations = {
       msg11: "Passwords do not match",
       changepassword: "Change Password",
       confirmnewpassword: "Confirm New Password",
+      currentemail: "Current Email",
+      confirmemail: "Confirm Email",
 
     },
     calc: {
@@ -285,7 +295,10 @@ const fallbackTranslations = {
       color: "Цвят",
       lotNumber: "Номер на лот",
       remove: "Премахване",
-     
+      newEmail: "Нов имейл",
+      cnfnewpassword: "Потвърдете новата парола",
+      vehical : "Превозно средство",
+      action : "Действие",
     },
     landing: {
       viewInventory: "Преглед на инвентара"
@@ -326,7 +339,7 @@ const fallbackTranslations = {
       terms: "Условията за ползване на AutoBidMaster",
       registerNow: "Регистрирай се сега",
     },
-    serach: {
+    search: {
       sFilter: "Филтри за търсене",
       resetAll: "Нулиране на всички",
       select: "Изберете само превозни средства",
@@ -394,6 +407,12 @@ const fallbackTranslations = {
       engine: "Двигател",
       color: "Цвят",
       bids: "Оферти",
+      text2: " Открийте вашия правилен автомобил",
+      smsg1: "резултати за",
+      smsg2: "Показване",
+      smsg3: "на",
+      smsg4: "Обяви",
+      
     },
     carDetails: {
       error: "Грешка",
@@ -443,7 +462,6 @@ const fallbackTranslations = {
           newemail: "Нов имейл",
           requird: "Това поле е задължително",
           msg2: "Моля, въведете валиден имейл адрес",
-          confirmemail: "Потвърдете имейла",
           msg3: "Моля, потвърдете вашия имейл",
           cnfirmnewemail: "Потвърдете новия имейл",
           msg4: "Моля, потвърдете новия си имейл",
@@ -459,6 +477,8 @@ const fallbackTranslations = {
           msg11: "Паролите не съвпадат",
           changepassword: "Променете паролата",
           confirmnewpassword: "Потвърдете новата парола",
+          currentemail: "Текущ имейл",
+          confirmemail: "Потвърдете имейла",
         },
         calc: {
           title: "Въведете вашата оферта",

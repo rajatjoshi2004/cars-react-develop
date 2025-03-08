@@ -806,10 +806,10 @@ const Search = () => {
               }}
             >
               <Title level={4} style={{ margin: 0 }}>
-                {t("serach.sFilter")}
+                {t('search.sFilter')}
               </Title>
               <Button type="link" onClick={handleReset}>
-                {t("serach.resetAll")}
+                {t('search.resetAll')}
               </Button>
             </div>
 
@@ -821,7 +821,7 @@ const Search = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <span style={{ marginRight: 8 }}>{t("serach.select")}</span>
+                <span style={{ marginRight: 8 }}>{t("search.select")}</span>
                 <Switch
                   checked={filters.selectVehiclesOnly}
                   onChange={(checked) =>
@@ -838,7 +838,7 @@ const Search = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <span style={{ marginRight: 8 }}>{t("serach.buyIt")}</span>
+                <span style={{ marginRight: 8 }}>{t("search.buyIt")}</span>
                 <Switch
                   checked={filters.buyItNow}
                   onChange={(checked) =>
@@ -868,7 +868,7 @@ const Search = () => {
                   },
                 }}
               >
-                <Panel header={t("serach.auction")} key="auction">
+                <Panel header={t("search.auction")} key="auction">
                   {/* <Space direction="vertical" style={{ width: "100%" }}>
                     <div
                       style={{
@@ -893,7 +893,7 @@ const Search = () => {
                       // paddingRight: "10px",
                     }}
                   >
-                    <span>{t("serach.copart")}</span>
+                    <span>{t("search.copart")}</span>
                     <Switch
                       checked={filters.copartAuction}
                       onChange={(checked) => {
@@ -921,7 +921,7 @@ const Search = () => {
                           // color: "#808080",
                         }}
                       >
-                        <span>⸰ {t("serach.usa")}</span>
+                        <span>⸰ {t("search.usa")}</span>
                         <Switch
                           checked={filters.usacopart}
                           onChange={(checked) => {
@@ -945,7 +945,7 @@ const Search = () => {
                           fontWeight: "bold",
                         }}
                       >
-                        <span>⸰ {t("serach.canada")}</span>
+                        <span>⸰ {t("search.canada")}</span>
                         <Switch
                           checked={filters.canadacopart}
                           onChange={(checked) => {
@@ -975,7 +975,7 @@ const Search = () => {
                       marginTop: "10px",
                     }}
                   >
-                    <span>{t("serach.iaai")}</span>
+                    <span>{t("search.iaai")}</span>
                     <Switch
                       checked={filters.iaaiAuction}
                       onChange={(checked) => {
@@ -1001,7 +1001,7 @@ const Search = () => {
                           fontWeight: "bold",
                         }}
                       >
-                        <span>⸰ {t("serach.usa")}</span>
+                        <span>⸰ {t("search.usa")}</span>
                         <Switch
                           checked={filters.usaiaai}
                           onChange={(checked) => {
@@ -1025,7 +1025,7 @@ const Search = () => {
                           fontWeight: "bold",
                         }}
                       >
-                        <span>⸰ {t("serach.canada")}</span>
+                        <span>⸰ {t("search.canada")}</span>
                         <Switch
                           checked={filters.canadaiaai}
                           onChange={(checked) => {
@@ -1044,7 +1044,7 @@ const Search = () => {
                   {/* </Space> */}
                 </Panel>
 
-                <Panel header={t("serach.make")} key="1">
+                <Panel header={t("search.make")} key="1">
                   <SearchableCheckboxGroup
                     options={manufacturers.map((m) => ({
                       label: (
@@ -1066,11 +1066,11 @@ const Search = () => {
                     onChange={(value: any) =>
                       handleFilterChange("selectedBrands", value)
                     }
-                    placeholder={t("serach.sMakes")}
+                    placeholder={t("search.sMakes")}
                   />
                 </Panel>
 
-                <Panel header={t("serach.model")} key="10">
+                <Panel header={t("search.model")} key="10">
                   <SearchableCheckboxGroup
                     options={models.map((m) => ({
                       label: (
@@ -1092,11 +1092,11 @@ const Search = () => {
                     onChange={(value) =>
                       handleFilterChange("selectedModel", value)
                     }
-                    placeholder={t("serach.sModel")}
+                    placeholder={t("search.sModel")}
                   />
                 </Panel>
 
-                <Panel header={t("serach.condition")} key="Condition">
+                <Panel header={t("search.condition")} key="Condition">
                   <Space direction="vertical" style={{ width: "100%" }}>
                     <div>
                       <Checkbox
@@ -1109,7 +1109,7 @@ const Search = () => {
                           )
                         }
                       >
-                        {t("serach.run")}
+                        {t("search.run")}
                       </Checkbox>
                       <br />
 
@@ -1120,7 +1120,7 @@ const Search = () => {
                           handleFilterChange("forRepair", !filters.forRepair)
                         }
                       >
-                        {t("serach.fRepair")}
+                        {t("search.fRepair")}
                       </Checkbox>
                       <br />
                       <Checkbox
@@ -1133,7 +1133,7 @@ const Search = () => {
                           )
                         }
                       >
-                        {t("serach.dismantled")}
+                        {t("search.dismantled")}
                       </Checkbox>
                       <br />
                       <Checkbox
@@ -1143,7 +1143,7 @@ const Search = () => {
                           handleFilterChange("not_run", !filters.not_run)
                         }
                       >
-                        {t("serach.notRun")}
+                        {t("search.notRun")}
                       </Checkbox>
                       <br />
                       <Checkbox
@@ -1153,7 +1153,7 @@ const Search = () => {
                           handleFilterChange("used", !filters.used)
                         }
                       >
-                        {t("serach.used")}
+                        {t("search.used")}
                       </Checkbox>
                       <br />
                       <Checkbox
@@ -1166,7 +1166,7 @@ const Search = () => {
                           )
                         }
                       >
-                        {t("serach.unconfirmed")}
+                        {t("search.unconfirmed")}
                       </Checkbox>
                       <br />
                       <Checkbox
@@ -1179,7 +1179,7 @@ const Search = () => {
                           )
                         }
                       >
-                        {t("serach.engineStart")}
+                        {t("search.engineStart")}
                       </Checkbox>
                       <br />
                       <Checkbox
@@ -1189,13 +1189,13 @@ const Search = () => {
                           handleFilterChange("enhanced", !filters.enhanced)
                         }
                       >
-                        {t("serach.enhanced")}
+                        {t("search.enhanced")}
                       </Checkbox>
                     </div>
                   </Space>
                 </Panel>
 
-                <Panel header={t("serach.yrRange")} key="13">
+                <Panel header={t("search.yrRange")} key="13">
                   <RangeFilterWithInput
                     min={1900}
                     max={new Date().getFullYear()}
@@ -1204,7 +1204,7 @@ const Search = () => {
                   />
                 </Panel>
 
-                <Panel header={t("serach.odometer")} key="6">
+                <Panel header={t("search.odometer")} key="6">
                   <RangeFilterWithInput
                     min={1}
                     max={250000}
@@ -1216,7 +1216,7 @@ const Search = () => {
                   />
                 </Panel>
 
-                <Panel header={t("serach.engineSize")} key="2">
+                <Panel header={t("search.engineSize")} key="2">
                   <RangeFilterWithInput
                     min={0}
                     max={16}
@@ -1228,11 +1228,11 @@ const Search = () => {
                   />
                 </Panel>
 
-                <Panel header={t("serach.transmission")} key="3">
+                <Panel header={t("search.transmission")} key="3">
                   <Checkbox.Group
                     options={[
-                      { label: t("serach.auto"), value: 2 },
-                      { label: t("serach.manual"), value: 1 },
+                      { label: t("search.auto"), value: 2 },
+                      { label: t("search.manual"), value: 1 },
                     ]}
                     onChange={(values) =>
                       handleFilterChange("transmission", values)
@@ -1240,7 +1240,7 @@ const Search = () => {
                   />
                 </Panel>
 
-                <Panel header={t("serach.fuelType")} key="4">
+                <Panel header={t("search.fuelType")} key="4">
                   <SearchableCheckboxGroup
                     options={fuelTypes.map((type) => ({
                       label: type.name,
@@ -1250,11 +1250,11 @@ const Search = () => {
                     onChange={(values) =>
                       handleFilterChange("fuelType", values)
                     }
-                    placeholder={t("serach.SfuelType")}
+                    placeholder={t("search.SfuelType")}
                   />
                 </Panel>
 
-                <Panel header={t("serach.cylinders")} key="5">
+                <Panel header={t("search.cylinders")} key="5">
                   <SearchableCheckboxGroup
                     options={cylinderOptions.map((cyl) => ({
                       label: cyl.toString(),
@@ -1264,11 +1264,11 @@ const Search = () => {
                     onChange={(values) =>
                       handleFilterChange("cylinders", values)
                     }
-                    placeholder={t("serach.sCylinders")}
+                    placeholder={t("search.sCylinders")}
                   />
                 </Panel>
 
-                <Panel header={t("serach.colors")} key="7">
+                <Panel header={t("search.colors")} key="7">
                   <SearchableCheckboxGroup
                     options={colorOptions.map((color) => ({
                       label: color.name,
@@ -1278,11 +1278,11 @@ const Search = () => {
                     onChange={(values) =>
                       handleFilterChange("selectedColors", values)
                     }
-                    placeholder={t("serach.sColors")}
+                    placeholder={t("search.sColors")}
                   />
                 </Panel>
 
-                <Panel header={t("serach.bodyStyle")} key="8">
+                <Panel header={t("search.bodyStyle")} key="8">
                   <SearchableCheckboxGroup
                     options={bodyStyles.map((style) => ({
                       label: style.name,
@@ -1292,11 +1292,11 @@ const Search = () => {
                     onChange={(values) =>
                       handleFilterChange("selectedBodyStyles", values)
                     }
-                    placeholder={t("serach.sBodyStyle")}
+                    placeholder={t("search.sBodyStyle")}
                   />
                 </Panel>
 
-                <Panel header={t("serach.location")} key="9">
+                <Panel header={t("search.location")} key="9">
                   <SearchableCheckboxGroup
                     options={locations.map((loc) => ({
                       label: loc.name,
@@ -1306,11 +1306,11 @@ const Search = () => {
                     onChange={(values) =>
                       handleFilterChange("selectedLocations", values)
                     }
-                    placeholder={t("serach.sLocation")}
+                    placeholder={t("search.sLocation")}
                   />
                 </Panel>
 
-                <Panel header={t("serach.primary")} key="11">
+                <Panel header={t("search.primary")} key="11">
                   <SearchableCheckboxGroup
                     options={primaryDamages.map((damage) => ({
                       label: damage.name,
@@ -1320,11 +1320,11 @@ const Search = () => {
                     onChange={(values) =>
                       handleFilterChange("selectedPrimaryDamages", values)
                     }
-                    placeholder={t("serach.sDamages")}
+                    placeholder={t("search.sDamages")}
                   />
                 </Panel>
 
-                <Panel header={t("serach.seller")} key="12">
+                <Panel header={t("search.seller")} key="12">
                   <SearchableCheckboxGroup
                     options={sellers.map((seller) => ({
                       label: seller.name,
@@ -1334,7 +1334,7 @@ const Search = () => {
                     onChange={(values) =>
                       handleFilterChange("selectedSellers", values)
                     }
-                    placeholder={t("serach.sSeller")}
+                    placeholder={t("search.sSeller")}
                   />
                 </Panel>
               </Collapse>
@@ -1343,7 +1343,7 @@ const Search = () => {
         </Sider>
         {/* Drawer for Mobile Screens */}
         <Drawer
-          title={t("serach.filters")}
+          title={t("search.filters")}
           placement="left"
           onClose={onClose}
           visible={visible}
@@ -1352,7 +1352,7 @@ const Search = () => {
           <Space direction="vertical" style={{ width: "100%" }} size="middle">
             {/* Quick Filters Section */}
             <div>
-              <Title level={5}>{t("serach.qFilters")}</Title>
+              <Title level={5}>{t("search.qFilters")}</Title>
               <Space direction="vertical" style={{ width: "100%" }}>
                 <div
                   style={{
@@ -1360,7 +1360,7 @@ const Search = () => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <span>{t("serach.sVehicals")}</span>
+                  <span>{t("search.sVehicals")}</span>
                   <Switch
                     checked={filters.selectVehiclesOnly}
                     onChange={(checked) =>
@@ -1374,7 +1374,7 @@ const Search = () => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <span>{t("serach.buyItNow")}</span>
+                  <span>{t("search.buyItNow")}</span>
                   <Switch
                     checked={filters.buyItNow}
                     onChange={(checked) =>
@@ -1401,7 +1401,7 @@ const Search = () => {
                 },
               }}
             >
-              <Panel header={t("serach.auction")} key="auction">
+              <Panel header={t("search.auction")} key="auction">
                 {/* <Space direction="vertical" style={{ width: "100%" }}>
                     <div
                       style={{
@@ -1426,7 +1426,7 @@ const Search = () => {
                     // paddingRight: "10px",
                   }}
                 >
-                  <span>{t("serach.copart")}</span>
+                  <span>{t("search.copart")}</span>
                   <Switch
                     checked={filters.copartAuction}
                     onChange={(checked) => {
@@ -1454,7 +1454,7 @@ const Search = () => {
                         // color: "#808080",
                       }}
                     >
-                      <span>⸰ {t("serach.usa")}</span>
+                      <span>⸰ {t("search.usa")}</span>
                       <Switch
                         checked={filters.usacopart}
                         onChange={(checked) => {
@@ -1478,7 +1478,7 @@ const Search = () => {
                         fontWeight: "bold",
                       }}
                     >
-                      <span>⸰ {t("serach.canada")}</span>
+                      <span>⸰ {t("search.canada")}</span>
                       <Switch
                         checked={filters.canadacopart}
                         onChange={(checked) => {
@@ -1508,7 +1508,7 @@ const Search = () => {
                     marginTop: "10px",
                   }}
                 >
-                  <span>{t("serach.iaai")}</span>
+                  <span>{t("search.iaai")}</span>
                   <Switch
                     checked={filters.iaaiAuction}
                     onChange={(checked) => {
@@ -1534,7 +1534,7 @@ const Search = () => {
                         fontWeight: "bold",
                       }}
                     >
-                      <span>⸰ {t("serach.usa")}</span>
+                      <span>⸰ {t("search.usa")}</span>
                       <Switch
                         checked={filters.usaiaai}
                         onChange={(checked) => {
@@ -1558,7 +1558,7 @@ const Search = () => {
                         fontWeight: "bold",
                       }}
                     >
-                      <span>⸰ {t("serach.canada")}</span>
+                      <span>⸰ {t("search.canada")}</span>
                       <Switch
                         checked={filters.canadaiaai}
                         onChange={(checked) => {
@@ -1577,7 +1577,7 @@ const Search = () => {
                 {/* </Space> */}
               </Panel>
 
-              <Panel header={t("serach.make")} key="1">
+              <Panel header={t("search.make")} key="1">
                 <SearchableCheckboxGroup
                   options={manufacturers.map((m) => ({
                     label: (
@@ -1599,11 +1599,11 @@ const Search = () => {
                   onChange={(value: any) =>
                     handleFilterChange("selectedBrands", value)
                   }
-                  placeholder={t("serach.sMakes")}
+                  placeholder={t("search.sMakes")}
                 />
               </Panel>
 
-              <Panel header={t("serach.condition")} key="Condition">
+              <Panel header={t("search.condition")} key="Condition">
                 <Space direction="vertical" style={{ width: "100%" }}>
                   <div>
                     <Checkbox
@@ -1613,7 +1613,7 @@ const Search = () => {
                         handleFilterChange("runAndDrive", !filters.runAndDrive)
                       }
                     >
-                      {t("serach.run")}
+                      {t("search.run")}
                     </Checkbox>
                     <br />
 
@@ -1624,7 +1624,7 @@ const Search = () => {
                         handleFilterChange("forRepair", !filters.forRepair)
                       }
                     >
-                      {t("serach.fRepair")}
+                      {t("search.fRepair")}
                     </Checkbox>
                     <br />
                     <Checkbox
@@ -1637,7 +1637,7 @@ const Search = () => {
                         )
                       }
                     >
-                      {t("serach.dismantled")}
+                      {t("search.dismantled")}
                     </Checkbox>
                     <br />
                     <Checkbox
@@ -1647,7 +1647,7 @@ const Search = () => {
                         handleFilterChange("not_run", !filters.not_run)
                       }
                     >
-                      {t("serach.notRun")}
+                      {t("search.notRun")}
                     </Checkbox>
                     <br />
                     <Checkbox
@@ -1655,7 +1655,7 @@ const Search = () => {
                       checked={filters.used}
                       onClick={() => handleFilterChange("used", !filters.used)}
                     >
-                      {t("serach.used")}
+                      {t("search.used")}
                     </Checkbox>
                     <br />
                     <Checkbox
@@ -1665,7 +1665,7 @@ const Search = () => {
                         handleFilterChange("unconfirmed", !filters.unconfirmed)
                       }
                     >
-                      {t("serach.unconfirmed")}
+                      {t("search.unconfirmed")}
                     </Checkbox>
                     <br />
                     <Checkbox
@@ -1678,7 +1678,7 @@ const Search = () => {
                         )
                       }
                     >
-                      {t("serach.engineStart")}
+                      {t("search.engineStart")}
                     </Checkbox>
                     <br />
                     <Checkbox
@@ -1688,13 +1688,13 @@ const Search = () => {
                         handleFilterChange("enhanced", !filters.enhanced)
                       }
                     >
-                      {t("serach.enhanced")}
+                      {t("search.enhanced")}
                     </Checkbox>
                   </div>
                 </Space>
               </Panel>
 
-              <Panel header={t("serach.yrRange")} key="13">
+              <Panel header={t("search.yrRange")} key="13">
                 <RangeFilterWithInput
                   min={1900}
                   max={new Date().getFullYear()}
@@ -1703,7 +1703,7 @@ const Search = () => {
                 />
               </Panel>
 
-              <Panel header={t("serach.odometer")} key="6">
+              <Panel header={t("search.odometer")} key="6">
                 <RangeFilterWithInput
                   min={1}
                   max={250000}
@@ -1715,7 +1715,7 @@ const Search = () => {
                 />
               </Panel>
 
-              <Panel header={t("serach.engineSize")} key="2">
+              <Panel header={t("search.engineSize")} key="2">
                 <RangeFilterWithInput
                   min={0}
                   max={16}
@@ -1727,11 +1727,11 @@ const Search = () => {
                 />
               </Panel>
 
-              <Panel header={t("serach.transmission")} key="3">
+              <Panel header={t("search.transmission")} key="3">
                 <Checkbox.Group
                   options={[
-                    { label: t("serach.auto"), value: 2 },
-                    { label: t("serach.manual"), value: 1 },
+                    { label: t("search.auto"), value: 2 },
+                    { label: t("search.manual"), value: 1 },
                   ]}
                   onChange={(values) =>
                     handleFilterChange("transmission", values)
@@ -1739,7 +1739,7 @@ const Search = () => {
                 />
               </Panel>
 
-              <Panel header={t("serach.fuelType")} key="4">
+              <Panel header={t("search.fuelType")} key="4">
                 <SearchableCheckboxGroup
                   options={fuelTypes.map((type) => ({
                     label: type.name,
@@ -1747,11 +1747,11 @@ const Search = () => {
                   }))}
                   value={filters.fuelType}
                   onChange={(values) => handleFilterChange("fuelType", values)}
-                  placeholder={t("serach.SfuelType")}
+                  placeholder={t("search.SfuelType")}
                 />
               </Panel>
 
-              <Panel header={t("serach.cylinders")} key="5">
+              <Panel header={t("search.cylinders")} key="5">
                 <SearchableCheckboxGroup
                   options={cylinderOptions.map((cyl) => ({
                     label: cyl.toString(),
@@ -1759,11 +1759,11 @@ const Search = () => {
                   }))}
                   value={filters.cylinders}
                   onChange={(values) => handleFilterChange("cylinders", values)}
-                  placeholder={t("serach.sCylinders")}
+                  placeholder={t("search.sCylinders")}
                 />
               </Panel>
 
-              <Panel header={t("serach.colors")} key="7">
+              <Panel header={t("search.colors")} key="7">
                 <SearchableCheckboxGroup
                   options={colorOptions.map((color) => ({
                     label: color.name,
@@ -1773,11 +1773,11 @@ const Search = () => {
                   onChange={(values) =>
                     handleFilterChange("selectedColors", values)
                   }
-                  placeholder={t("serach.sColors")}
+                  placeholder={t("search.sColors")}
                 />
               </Panel>
 
-              <Panel header={t("serach.bodyStyle")} key="8">
+              <Panel header={t("search.bodyStyle")} key="8">
                 <SearchableCheckboxGroup
                   options={bodyStyles.map((style) => ({
                     label: style.name,
@@ -1787,11 +1787,11 @@ const Search = () => {
                   onChange={(values) =>
                     handleFilterChange("selectedBodyStyles", values)
                   }
-                  placeholder={t("serach.sBodyStyle")}
+                  placeholder={t("search.sBodyStyle")}
                 />
               </Panel>
 
-              <Panel header={t("serach.location")} key="9">
+              <Panel header={t("search.location")} key="9">
                 <SearchableCheckboxGroup
                   options={locations.map((loc) => ({
                     label: loc.name,
@@ -1801,11 +1801,11 @@ const Search = () => {
                   onChange={(values) =>
                     handleFilterChange("selectedLocations", values)
                   }
-                  placeholder={t("serach.sLocation")}
+                  placeholder={t("search.sLocation")}
                 />
               </Panel>
 
-              <Panel header={t("serach.primary")} key="11">
+              <Panel header={t("search.primary")} key="11">
                 <SearchableCheckboxGroup
                   options={primaryDamages.map((damage) => ({
                     label: damage.name,
@@ -1815,11 +1815,11 @@ const Search = () => {
                   onChange={(values) =>
                     handleFilterChange("selectedPrimaryDamages", values)
                   }
-                  placeholder={t("serach.sDamages")}
+                  placeholder={t("search.sDamages")}
                 />
               </Panel>
 
-              <Panel header={t("serach.seller")} key="12">
+              <Panel header={t("search.seller")} key="12">
                 <SearchableCheckboxGroup
                   options={sellers.map((seller) => ({
                     label: seller.name,
@@ -1829,7 +1829,7 @@ const Search = () => {
                   onChange={(values) =>
                     handleFilterChange("selectedSellers", values)
                   }
-                  placeholder={t("serach.sSeller")}
+                  placeholder={t("search.sSeller")}
                 />
               </Panel>
             </Collapse>
@@ -1853,7 +1853,7 @@ const Search = () => {
               style={{ margin: "16px" }}
               id="filter-button"
             >
-              Filter
+              {t('search.filters')}
             </Button>
           )}
 
@@ -1868,7 +1868,7 @@ const Search = () => {
                 gap: "8px",
               }}
             >
-              <Title level={2}> Discover Your Right Car</Title>
+              <Title level={2}> {t('search.text2')}</Title>
               {resultsInfo.total > 0 && (
                 <div
                   style={{
@@ -1884,19 +1884,19 @@ const Search = () => {
                     }}
                   >
                     {searchQuery ? (
-                      <>Showing results for {searchQuery}: </>
+                      <> {t('search.smsg1')} {searchQuery}: </>
                     ) : (
-                      <>Showing </>
+                      <>{t('search.smsg2')} </>
                     )}
                     {resultsInfo.from} – {resultsInfo.to}
                     {resultsInfo.to >= 30 && (
-                      <> of {resultsInfo.total.toLocaleString()}</>
+                      <> {t('search.smsg3')} {resultsInfo.total.toLocaleString()}</>
                     )}{" "}
-                    Listings
+                  {t('search.smsg3')}
                   </Text>
                   {getActiveFilters(filters).length > 0 && (
                     <Text type="secondary">
-                      Filters: {getActiveFilters(filters).join(" • ")}
+                      {t('search.filters')}: {getActiveFilters(filters).join(" • ")}
                     </Text>
                   )}
                 </div>

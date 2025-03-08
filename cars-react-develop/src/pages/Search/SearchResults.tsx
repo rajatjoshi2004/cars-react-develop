@@ -194,14 +194,14 @@ const VehicleTable: FC<{
         }}
         onClick={() => toggleWishlist(vin)}
       >
-        {inWishlist ? t("header.remove") : t("serach.watch")}
+        {inWishlist ? t('header.remove') : t('search.watch')}
       </Button>
     );
   };
 
   const columns = [
     {
-      title: t("serach.image"),
+      title: t("search.image"),
       dataIndex: "image",
       key: "image",
       className: "image-result",
@@ -219,7 +219,7 @@ const VehicleTable: FC<{
       responsive: ["xs", "sm", "md", "lg", "xl", "xxl"],
     },
     {
-      title: t("serach.lotInfo"),
+      title: t("search.lotInfo"),
       dataIndex: "title",
       key: "lotInfo",
       render: (_: any, record: Car) => (
@@ -249,7 +249,7 @@ const VehicleTable: FC<{
             </Link>
           </Text>
           <Text>
-            {t("serach.lot")} {record?.lots?.[0]?.lot}
+            {t("search.lot")} {record?.lots?.[0]?.lot}
           </Text>
           <WishlistButton vin={record.vin} />
         </Space>
@@ -257,12 +257,12 @@ const VehicleTable: FC<{
       responsive: ["xs", "sm", "md", "lg", "xl", "xxl"],
     },
     {
-      title: t("serach.vehicalInfo"),
+      title: t("search.vehicalInfo"),
       dataIndex: "vehicleInfo",
       key: "vehicleInfo",
       render: (_: any, record: Car) => (
         <Space direction="vertical">
-          <Text className="text-gray-600">{t("serach.odometer")}: </Text>
+          <Text className="text-gray-600">{t("search.odometer")}: </Text>
           <Text strong>
             {record?.lots?.[0]?.odometer
               ? record?.lots?.[0]?.odometer?.km !== null
@@ -271,7 +271,7 @@ const VehicleTable: FC<{
               : "N/A"}
           </Text>
           <Text className="text-gray-600" style={{ whiteSpace: "nowrap" }}>
-            {t("serach.value")}
+            {t("search.value")}
           </Text>
           <Text strong>${record?.lots?.[0]?.actual_cash_value || "N/A"}</Text>
         </Space>
@@ -279,13 +279,13 @@ const VehicleTable: FC<{
       responsive: ["xs", "sm", "md", "lg", "xl", "xxl"],
     },
     {
-      title: t("serach.condition"),
+      title: t("search.condition"),
       dataIndex: "condition",
       key: "condition",
       render: (_: any, record: Car) => (
         <Space direction="vertical">
           <div>
-            <Text className="text-gray-600">{t("serach.title")}: </Text>
+            <Text className="text-gray-600">{t("search.title")}: </Text>
             <Text strong>
               {record?.lots?.[0]?.detailed_title?.name ||
                 record?.lots?.[0]?.title?.name ||
@@ -293,19 +293,19 @@ const VehicleTable: FC<{
             </Text>
           </div>
           <div>
-            <Text className="text-gray-600">{t("serach.damage")}: </Text>
+            <Text className="text-gray-600">{t("search.damage")}: </Text>
             <Text strong>
               {record?.lots?.[0]?.damage?.main?.name || "None"}
             </Text>
           </div>
           <div>
-            <Text className="text-gray-600">{t("serach.sDamage")}: </Text>
+            <Text className="text-gray-600">{t("search.sDamage")}: </Text>
             <Text strong>
               {record?.lots?.[0]?.damage?.second?.name || "None"}
             </Text>
           </div>
           <div>
-            <Text className="text-gray-600">{t("serach.status")}: </Text>
+            <Text className="text-gray-600">{t("search.status")}: </Text>
             <Text strong>
               <Tag color={formatStatus(record?.lots?.[0]?.condition?.id).color}>
                 {formatStatus(record?.lots?.[0]?.condition?.id).text}
@@ -317,21 +317,21 @@ const VehicleTable: FC<{
       responsive: ["lg"],
     },
     {
-      title: t("serach.saleInfo"),
+      title: t("search.saleInfo"),
       dataIndex: "saleInfo",
       key: "saleInfo",
       render: (_: any, record: Car) => (
         <Space direction="vertical">
           <div>
-            <Text className="text-gray-600">{t("serach.location")}: </Text>
+            <Text className="text-gray-600">{t("search.location")}: </Text>
             <Text strong>{record?.lots?.[0]?.selling_branch?.name}</Text>
           </div>
           <div>
-            <Text className="text-gray-600">{t("serach.date")}: </Text>
+            <Text className="text-gray-600">{t("search.date")}: </Text>
             <Text strong>{formatSaleDate(record?.lots?.[0]?.sale_date)}</Text>
           </div>
           <div>
-            <Text className="text-gray-600">{t("serach.seller")}: </Text>
+            <Text className="text-gray-600">{t("search.seller")}: </Text>
             <Text strong>{record?.lots?.[0]?.seller?.name || "Unknown"}</Text>
           </div>
         </Space>
@@ -339,32 +339,32 @@ const VehicleTable: FC<{
       responsive: ["lg"],
     },
     {
-      title: t("serach.moreInfo"),
+      title: t("search.moreInfo"),
       dataIndex: "moreInfo",
       key: "moreInfo",
       render: (_: any, record: Car) => (
         <Space direction="vertical">
           <div className="text-nowrap">
-            <Text className="text-gray-600">{t("serach.drive")}: </Text>
+            <Text className="text-gray-600">{t("search.drive")}: </Text>
             <Text strong>{record?.drive_wheel?.name || "N/A"}</Text>
           </div>
           <div>
-            <Text className="text-gray-600">{t("serach.cylinders")}: </Text>
+            <Text className="text-gray-600">{t("search.cylinders")}: </Text>
             <Text strong>{record?.cylinders || "N/A"}</Text>
           </div>
           <div>
-            <Text className="text-gray-600">{t("serach.fuel")}: </Text>
+            <Text className="text-gray-600">{t("search.fuel")}: </Text>
             <Text strong>{record?.fuel?.name || "N/A"}</Text>
           </div>
           <div>
-            <Text className="text-gray-600 text-xs">{t("serach.color")}: </Text>
+            <Text className="text-gray-600 text-xs">{t("search.color")}: </Text>
             <Text strong>{record?.color?.name || "N/A"}</Text>
           </div>
         </Space>
       ),
     },
     {
-      title: t("serach.bids"),
+      title: t("search.bids"),
       dataIndex: "bids",
       key: "bids",
       render: (_: any, record: Car) => (
@@ -378,7 +378,7 @@ const VehicleTable: FC<{
               <Divider className="m-0" />
               <Text className="text-green-900">
                 {" "}
-                {t("serach.buyItNow")}:{" "}
+                {t("search.buyItNow")}:{" "}
                 <Text strong className="text-green-900">
                   {" "}
                   ${record?.lots?.[0]?.buy_now || "0"}

@@ -11,6 +11,7 @@ const { Header, Content } = Layout;
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
 
+
 interface WishlistItem {
   id: number;
   year: number;
@@ -71,11 +72,11 @@ const Dashboard: React.FC = () => {
   const screens = useBreakpoint();
   const [wishlist, setWishlist] = useState<FormattedWishlistItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-
+  
   useEffect(() => {
     fetchWishlist();
   }, []);
-
+const { t } = useTranslationApi();
   const fetchWishlist = async () => {
     setLoading(true);
     const token = localStorage.getItem("token");
@@ -178,7 +179,7 @@ const Dashboard: React.FC = () => {
   // Columns for Table (Desktop View)
   const columns = [
     {
-      title: "Image",
+      title: t("search.image"),
       dataIndex: "image",
       key: "image",
       render: (text: string, record: any) => (
@@ -188,7 +189,7 @@ const Dashboard: React.FC = () => {
       ),
     },
     {
-      title: "Vehicle",
+      title: t('header.vehical  '),
       dataIndex: "vehicle",
       key: "vehicle",
       render: (text: string, record: FormattedWishlistItem) => (
@@ -221,23 +222,23 @@ const Dashboard: React.FC = () => {
     //     ),
     // },
     {
-      title: "Damage",
+      title: t('search.damage'),
       dataIndex: "damage",
       key: "damage",
     },
     {
-      title: "Odometer",
+      title: t('search.odometer'),
       dataIndex: "odometer",
       key: "odometer",
     },
     {
-      title: "Current Bid",
+      title: t('header.currentBid'),
       dataIndex: "bid",
       key: "bid",
       render: (text: string) => <Text strong>${text || 0} USD</Text>,
     },
     {
-      title: "Sale Date",
+      title: t('carDetails.saleDate'),
       dataIndex: "saleDate",
       key: "saleDate",
       render: (text: string) => {
@@ -266,7 +267,7 @@ const Dashboard: React.FC = () => {
       },
     },
     {
-      title: "Actions",
+      title:t('header.action'),
       key: "actions",
       render: (_: any, record: FormattedWishlistItem) => (
         <Button
@@ -280,7 +281,7 @@ const Dashboard: React.FC = () => {
       ),
     },
   ];
-  const { t } = useTranslationApi();
+  // const { t } = useTranslationApi();
   return (
     <Layout>
       {/* Dashboard Header */}
@@ -365,7 +366,7 @@ const Dashboard: React.FC = () => {
                   {item.damage}
                 </div>
                 <div>
-                  <Text strong>{t("serach.odometer")}: </Text>
+                  <Text strong>{t("search.odometer")}: </Text>
                   {item.odometer ? item.odometer : "N/A"}
                 </div>
                 <div>

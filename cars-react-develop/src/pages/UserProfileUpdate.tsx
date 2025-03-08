@@ -145,7 +145,7 @@ const UserProfileUpdate: React.FC = () => {
                                 requiredMark={false}
                                 style={{ maxWidth: "450px" }}
                             >
-                                <Form.Item label="Current Email">
+                                <Form.Item label={t('otp.currentemail')}>
                                     <Input
                                         value={userData.email}
                                         disabled
@@ -154,8 +154,8 @@ const UserProfileUpdate: React.FC = () => {
                                 </Form.Item>
 
                                 <Form.Item
-                                    name={t('otp.newemail')}
-                                    label="New Email"
+                                    name="new email"
+                                    label={t('header.newEmail')}
                                     rules={[
                                         {
                                             required: true,
@@ -174,8 +174,8 @@ const UserProfileUpdate: React.FC = () => {
                                 </Form.Item>
 
                                 <Form.Item
-                                    name={t('otp.confirmemail')}
-                                    label="Confirm New Email"
+                                    name="confirm Password"
+                                    label={t('header.cnfnewpassword')}
                                     rules={[
                                         {
                                             required: true,
@@ -189,8 +189,8 @@ const UserProfileUpdate: React.FC = () => {
                                 </Form.Item>
 
                                 <Form.Item
-                                    name={t('otp.currentpassword')}
-                                    label="Current Password"
+                                    name="Current Password"
+                                    label={t('otp.currntpassword')}
                                     rules={[
                                         {
                                             required: true,
@@ -200,7 +200,7 @@ const UserProfileUpdate: React.FC = () => {
                                     ]}
                                 >
                                     <Input
-                                        placeholder={t('otp.currentpassword')}
+                                        placeholder={t('otp.currntpassword')}
                                         type={
                                             currentPasswordVisible
                                                 ? "text"
@@ -290,7 +290,7 @@ const UserProfileUpdate: React.FC = () => {
                 {/* Password Change Section */}
                 <div>
                     <Title level={3} style={{ marginBottom: "24px" }}>
-                        Change Password
+                       {t('otp.changepassword')}
                     </Title>
 
                     <Form
@@ -301,8 +301,8 @@ const UserProfileUpdate: React.FC = () => {
                         style={{ maxWidth: "450px" }}
                     >
                         <Form.Item
-                            name={t('otp.currentpassword')}
-                            label="Current Password"
+                            name="currentPassword"
+                            label={t('otp.currentpassword')}x
                             rules={[
                                 {
                                     required: true,
@@ -331,8 +331,8 @@ const UserProfileUpdate: React.FC = () => {
                         </Form.Item>
 
                         <Form.Item
-                            name= {t('otp.newpassword')}
-                            label="New Password"
+                            name= "new password"
+                            label={t('otp.newpassword')}
                             rules={[
                                 {
                                     required: true,
@@ -345,12 +345,12 @@ const UserProfileUpdate: React.FC = () => {
                                 },
                             ]}
                         >
-                            <Input placeholder="New Password" type="password" />
+                            <Input placeholder="{t('otp.newpassword')}" type="password" />
                         </Form.Item>
 
                         <Form.Item
-                            name={t('otp.confirmpassword')}
-                            label="Confirm New Password"
+                            name="confirmPassword"
+                            label={t('otp.confirmpassword')}
                             rules={[
                                 {
                                     required: true,

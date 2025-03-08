@@ -69,10 +69,8 @@ const AppHeader = () => {
                         <SearchInput />
                     </div>
                 )}
-                <div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
                     <LanguageSelector />
-                           
-                           
                 </div>
                 
                 {/* Buttons on the right */}
@@ -156,6 +154,8 @@ const AppHeader = () => {
                     </div>
                 )}
             </Header>
+
+            
         </>
     );
 };

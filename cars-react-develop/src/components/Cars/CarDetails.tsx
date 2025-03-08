@@ -500,7 +500,7 @@ const VehicleDetails = ({
 
           {/* Odometer */}
           <p className="flex items-baseline py-2 mb-0">
-            <span className="font-light w-1/3">{t("serach.odometer")}:</span>
+            <span className="font-light w-1/3">{t("search.odometer")}:</span>
             <span className="font-bold w-2/3">
               {activeLot.odometer
                 ? `${activeLot.odometer.mi} mi / ${activeLot.odometer.km} km${
@@ -515,7 +515,7 @@ const VehicleDetails = ({
 
           {/* Primary Damage */}
           <p className="flex items-baseline py-2 mb-0">
-            <span className="font-light w-1/3">{t("serach.primary")}:</span>
+            <span className="font-light w-1/3">{t("search.primary")}:</span>
             <span className="font-bold w-2/3">
               {activeLot.damage?.main?.name || "N/A"}
             </span>
@@ -550,7 +550,7 @@ const VehicleDetails = ({
           <hr />
           {/* Fuel */}
           <p className="flex items-baseline py-2 mb-0">
-            <span className="font-light w-1/3">{t("serach.fuel")}: </span>
+            <span className="font-light w-1/3">{t("search.fuel")}: </span>
             <span className="font-bold w-2/3">
               {carData.fuel?.name || "N/A"}
             </span>
@@ -559,7 +559,7 @@ const VehicleDetails = ({
 
           {/* Cylinders */}
           <p className="flex items-baseline py-2 mb-0">
-            <span className="font-light w-1/3">{t("serach.cylinders")}:</span>
+            <span className="font-light w-1/3">{t("search.cylinders")}:</span>
             <span className="font-bold w-2/3">
               {carData?.cylinders || "N/A"}
             </span>
@@ -568,7 +568,7 @@ const VehicleDetails = ({
 
           {/* Engine */}
           <p className="flex items-baseline py-2 mb-0">
-            <span className="font-light w-1/3">{t("serach.engine")}: </span>
+            <span className="font-light w-1/3">{t("search.engine")}: </span>
             <span className="font-bold w-2/3">
               {carData.engine?.name || "N/A"}
             </span>
@@ -588,7 +588,7 @@ const VehicleDetails = ({
 
           {/* Color */}
           <p className="flex items-baseline py-2 mb-0">
-            <span className="font-light w-1/3">{t("serach.color")}:</span>
+            <span className="font-light w-1/3">{t("search.color")}:</span>
             <span className="font-bold w-2/3">
               {carData?.color?.name || "N/A"}
             </span>
@@ -598,7 +598,7 @@ const VehicleDetails = ({
           {/* Transmission */}
           <p className="flex items-baseline py-2 mb-0">
             <span className="font-light w-1/3">
-              {t("serach.transmission")}:
+              {t("search.transmission")}:
             </span>
             <span className="font-bold w-2/3">
               {carData?.transmission?.name || "N/A"}
@@ -617,7 +617,7 @@ const VehicleDetails = ({
 
           {/* Condition */}
           <p className="flex items-baseline py-2 mb-0">
-            <span className="font-light w-1/3">{t("serach.condition")}:</span>
+            <span className="font-light w-1/3">{t("search.condition")}:</span>
             <span className="font-bold w-2/3">
               {activeLot?.condition
                 ? ` ${(activeLot?.condition?.name).replaceAll("_", " ")}`
@@ -771,7 +771,7 @@ const SaleInformation = ({ activeLot }: { activeLot: Lot }) => {
       <hr />
       {/* Seller */}
       <p className="flex items-baseline py-2 mb-0">
-        <span className="font-light w-1/3">{t("serach.seller")}:</span>
+        <span className="font-light w-1/3">{t("search.seller")}:</span>
         <span className="font-bold w-2/3">
           {activeLot?.seller ? activeLot?.seller?.name : "N/A"}
         </span>
