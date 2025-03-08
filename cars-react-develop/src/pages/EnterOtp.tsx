@@ -4,8 +4,11 @@ import { LockOutlined } from "@ant-design/icons";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useTranslationApi } from "../hooks/useTranslationApi";
 
 const EnterOtp: React.FC = () => {
+    const { t } = useTranslationApi();
     const [otp, setOtp] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -64,15 +67,14 @@ const EnterOtp: React.FC = () => {
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <Card className="w-full max-w-md p-6 text-center shadow-lg rounded-2xl">
                 <h1 className="text-2xl font-semibold text-blue-600">
-                    Atlantic Cars
+                   {t('otp.name')}
                 </h1>
                 <div className="my-4 flex justify-center">
                     <LockOutlined className="text-5xl text-blue-500" />
                 </div>
-                <h2 className="text-xl font-medium">Reset Your Password</h2>
+                <h2 className="text-xl font-medium">{t('otp.reset')}</h2>
                 <p className="text-gray-600 mt-2">
-                    Enter the OTP sent to <strong>{email}</strong> and set a new
-                    password.
+                    {t('otp.text1')} <strong>{email}</strong> {t('otp.text2')}
                 </p>
                 <Input
                     size="large"
@@ -96,12 +98,12 @@ const EnterOtp: React.FC = () => {
                     disabled={otp.length !== 6 || password.length < 6}
                     onClick={handleVerifyOtp}
                 >
-                    Reset Password
+                    {t('otp.reset2')}
                 </Button>
                 <p className="text-gray-500 text-sm mt-4">
-                    Didn't receive the code?{" "}
+                   {t('otp.notrecivecode')} {" "}
                     <span className="text-blue-500 cursor-pointer">
-                        Resend OTP
+                        {t('otp.resend')}
                     </span>
                 </p>
             </Card>

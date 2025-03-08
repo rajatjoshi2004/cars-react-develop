@@ -6,6 +6,9 @@ import {
     LockOutlined,
 } from "@ant-design/icons";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
+import { useTranslationApi } from "../hooks/useTranslationApi";
+
 
 const { Content } = Layout;
 const { Title, Text } = Typography;
@@ -18,7 +21,7 @@ const UserProfileUpdate: React.FC = () => {
     const [currentPasswordVisible, setCurrentPasswordVisible] = useState(false);
     const [loading, setLoading] = useState(false);
     const [emailError, setEmailError] = useState("");
-
+    const { t } = useTranslationApi();
     // Mock user data - in a real app, you would fetch this from your API
     const [userData, setUserData] = useState({
         email: localStorage.getItem("email") || "", // Initialize email from localStorage
@@ -124,7 +127,7 @@ const UserProfileUpdate: React.FC = () => {
                 {/* Email Change Section */}
                 <div style={{ marginBottom: "40px" }}>
                     <Title level={3} style={{ marginBottom: "24px" }}>
-                        Change Email
+                        {t('otp.changeemail')}
                     </Title>
 
                     <div
@@ -151,54 +154,53 @@ const UserProfileUpdate: React.FC = () => {
                                 </Form.Item>
 
                                 <Form.Item
-                                    name="newEmail"
+                                    name={t('otp.newemail')}
                                     label="New Email"
                                     rules={[
                                         {
                                             required: true,
-                                            message: "This field is required",
+                                            message: t('otp.required'),
                                         },
                                         {
                                             type: "email",
-                                            message:
-                                                "Please enter a valid email address",
+                                            message: t('otp.msg2'),
                                         },
                                         { validator: validateEmails },
                                     ]}
                                     validateStatus={emailError ? "error" : ""}
                                     help={emailError}
                                 >
-                                    <Input placeholder="New Email" />
+                                    <Input placeholder={t('otp.newemail')} />
                                 </Form.Item>
 
                                 <Form.Item
-                                    name="confirmEmail"
+                                    name={t('otp.confirmemail')}
                                     label="Confirm New Email"
                                     rules={[
                                         {
                                             required: true,
                                             message:
-                                                "Please confirm your email",
+                                                t('otp.msg3'),
                                         },
                                         { validator: validateEmails },
                                     ]}
                                 >
-                                    <Input placeholder="Confirm New Email" />
+                                    <Input placeholder={t('otp.cnfirmnewemail')} />
                                 </Form.Item>
 
                                 <Form.Item
-                                    name="currentPasswordForEmail"
+                                    name={t('otp.currentpassword')}
                                     label="Current Password"
                                     rules={[
                                         {
                                             required: true,
                                             message:
-                                                "Please enter your current password",
+                                                t('otp.msg5'),
                                         },
                                     ]}
                                 >
                                     <Input
-                                        placeholder="Current Password"
+                                        placeholder={t('otp.currentpassword')}
                                         type={
                                             currentPasswordVisible
                                                 ? "text"
@@ -236,7 +238,7 @@ const UserProfileUpdate: React.FC = () => {
                                             borderRadius: "4px",
                                         }}
                                     >
-                                        CHANGE EMAIL
+                                        {t('otp.changeemail')}
                                     </Button>
                                 </Form.Item>
                             </Form>
@@ -273,12 +275,10 @@ const UserProfileUpdate: React.FC = () => {
                                                 marginBottom: "8px",
                                             }}
                                         >
-                                            Your account is secure
+                                            {t('otp.msg6')}
                                         </Text>
                                         <Text style={{ color: "#666" }}>
-                                            We use maximum encryption so that
-                                            your payment and personal
-                                            information are safe and secure.
+                                            {t('otp.msg7')}
                                         </Text>
                                     </div>
                                 </div>
@@ -301,18 +301,17 @@ const UserProfileUpdate: React.FC = () => {
                         style={{ maxWidth: "450px" }}
                     >
                         <Form.Item
-                            name="currentPassword"
+                            name={t('otp.currentpassword')}
                             label="Current Password"
                             rules={[
                                 {
                                     required: true,
                                     message:
-                                        "Please enter your current password",
-                                },
+                                        t('otp.msg5')                              },
                             ]}
                         >
                             <Input
-                                placeholder="Current Password"
+                                placeholder={t('otp.currentpassword')}
                                 type={passwordVisible ? "text" : "password"}
                                 suffix={
                                     <span
@@ -332,17 +331,17 @@ const UserProfileUpdate: React.FC = () => {
                         </Form.Item>
 
                         <Form.Item
-                            name="newPassword"
+                            name= {t('otp.newpassword')}
                             label="New Password"
                             rules={[
                                 {
                                     required: true,
-                                    message: "Please enter your new password",
+                                    message: t('otp.msg8'),
                                 },
                                 {
                                     min: 8,
                                     message:
-                                        "Password must be at least 8 characters",
+                                       t('otp.msg9'), 
                                 },
                             ]}
                         >
@@ -350,12 +349,12 @@ const UserProfileUpdate: React.FC = () => {
                         </Form.Item>
 
                         <Form.Item
-                            name="confirmPassword"
+                            name={t('otp.confirmpassword')}
                             label="Confirm New Password"
                             rules={[
                                 {
                                     required: true,
-                                    message: "Please confirm your new password",
+                                    message: t('otp.msg10'),
                                 },
                                 ({ getFieldValue }) => ({
                                     validator(_, value) {
@@ -367,14 +366,14 @@ const UserProfileUpdate: React.FC = () => {
                                             return Promise.resolve();
                                         }
                                         return Promise.reject(
-                                            "The two passwords do not match!"
+                                            t('otp.msg11')
                                         );
                                     },
                                 }),
                             ]}
                         >
                             <Input
-                                placeholder="Confirm New Password"
+                                placeholder={t('otp.confirmnewpassword')}
                                 type={
                                     confirmPasswordVisible ? "text" : "password"
                                 }
@@ -410,7 +409,7 @@ const UserProfileUpdate: React.FC = () => {
                                     borderRadius: "4px",
                                 }}
                             >
-                                CHANGE PASSWORD
+                               {t('otp.changepassword')}
                             </Button>
                         </Form.Item>
                     </Form>

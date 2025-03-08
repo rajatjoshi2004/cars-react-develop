@@ -5,7 +5,7 @@ import './LanguageSelector.css';
 
 const languages = [
   { code: 'en', name: 'English' },
-  { code: 'bg', name: 'bulgarian' },
+  { code: 'bg', name: 'Bulgarian' },
 ];
 
 const LanguageSelector: React.FC = () => {

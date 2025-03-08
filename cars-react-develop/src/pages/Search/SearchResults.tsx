@@ -257,7 +257,7 @@ const VehicleTable: FC<{
       responsive: ["xs", "sm", "md", "lg", "xl", "xxl"],
     },
     {
-      title: t("serach.vehicleInfo"),
+      title: t("serach.vehicalInfo"),
       dataIndex: "vehicleInfo",
       key: "vehicleInfo",
       render: (_: any, record: Car) => (
@@ -345,26 +345,26 @@ const VehicleTable: FC<{
       render: (_: any, record: Car) => (
         <Space direction="vertical">
           <div className="text-nowrap">
-            <Text className="text-gray-600">Drive: </Text>
+            <Text className="text-gray-600">{t("serach.drive")}: </Text>
             <Text strong>{record?.drive_wheel?.name || "N/A"}</Text>
           </div>
           <div>
-            <Text className="text-gray-600">Cylinders: </Text>
+            <Text className="text-gray-600">{t("serach.cylinders")}: </Text>
             <Text strong>{record?.cylinders || "N/A"}</Text>
           </div>
           <div>
-            <Text className="text-gray-600">Fuel: </Text>
+            <Text className="text-gray-600">{t("serach.fuel")}: </Text>
             <Text strong>{record?.fuel?.name || "N/A"}</Text>
           </div>
           <div>
-            <Text className="text-gray-600 text-xs">Color: </Text>
+            <Text className="text-gray-600 text-xs">{t("serach.color")}: </Text>
             <Text strong>{record?.color?.name || "N/A"}</Text>
           </div>
         </Space>
       ),
     },
     {
-      title: "Bids",
+      title: t("serach.bids"),
       dataIndex: "bids",
       key: "bids",
       render: (_: any, record: Car) => (
@@ -372,13 +372,13 @@ const VehicleTable: FC<{
           {filter?.buyItNow ? (
             <>
               <Text>
-                Current Bid:{" "}
+                {t("header.currentBid")}:{" "}
                 <Text strong> ${record?.lots?.[0]?.bid || "0"}</Text>
               </Text>
               <Divider className="m-0" />
               <Text className="text-green-900">
                 {" "}
-                Buy It Now:{" "}
+                {t("serach.buyItNow")}:{" "}
                 <Text strong className="text-green-900">
                   {" "}
                   ${record?.lots?.[0]?.buy_now || "0"}
@@ -387,7 +387,10 @@ const VehicleTable: FC<{
             </>
           ) : (
             <>
-              <Text>Current Bid ${record?.lots?.[0]?.bid || "0"}</Text>
+              <Text>
+                {" "}
+                {t("header.currentBid")} ${record?.lots?.[0]?.bid || "0"}
+              </Text>
             </>
           )}
         </Space>
