@@ -1888,7 +1888,7 @@ const Search = () => {
                     {resultsInfo.to >= 30 && (
                       <> {t('search.smsg3')} {resultsInfo.total.toLocaleString()}</>
                     )}{" "}
-                  {t('search.smsg3')}
+                  {t('search.smsg4')}
                   </Text>
                   {getActiveFilters(filters).length > 0 && (
                     <Text type="secondary">

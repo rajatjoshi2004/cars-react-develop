@@ -302,7 +302,7 @@ const UserProfileUpdate: React.FC = () => {
                     >
                         <Form.Item
                             name="currentPassword"
-                            label={t('otp.currentpassword')}x
+                            label={t('otp.currntpassword')}x
                             rules={[
                                 {
                                     required: true,
@@ -311,7 +311,7 @@ const UserProfileUpdate: React.FC = () => {
                             ]}
                         >
                             <Input
-                                placeholder={t('otp.currentpassword')}
+                                placeholder={t('otp.currntpassword')}
                                 type={passwordVisible ? "text" : "password"}
                                 suffix={
                                     <span
@@ -345,7 +345,7 @@ const UserProfileUpdate: React.FC = () => {
                                 },
                             ]}
                         >
-                            <Input placeholder="{t('otp.newpassword')}" type="password" />
+                            <Input placeholder={t('otp.newpassword')}type="password" />
                         </Form.Item>
 
                         <Form.Item
