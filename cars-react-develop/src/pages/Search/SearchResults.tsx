@@ -369,7 +369,7 @@ const VehicleTable: FC<{
       key: "bids",
       render: (_: any, record: Car) => (
         <Space direction="vertical">
-          {filter?.buyItNow ? (
+          {filter?.buyItNow || record?.lots?.[0]?.buy_now ? (
             <>
               <Text>
                 {t("header.currentBid")}:{" "}
@@ -398,6 +398,7 @@ const VehicleTable: FC<{
       responsive: ["xs", "sm", "md", "lg", "xl", "xxl"],
     },
   ];
+
 
   // Update CarList component to include the wishlist toggle functionality
   const renderCarList = () => {

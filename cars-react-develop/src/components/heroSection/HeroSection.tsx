@@ -53,14 +53,7 @@ const HeroSection: React.FC = () => {
                         </div>
                     </div> */}
                 </Col>
-                <Col xs={24} md={10}>
-                    {auth ? (
-                        // <CarFinderForm />
-                        <></>
-                    ) : (
-                        <RegisterForm />
-                    )}
-                </Col>
+                
             </Row>
         </div>
     );

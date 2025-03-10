@@ -24,6 +24,8 @@ import aiia from "../../assets/images/aiia.png";
 import RenderAuctionStatus from "../renderAuctionStatus";
 import { useTranslation } from 'react-i18next';
 import { useTranslationApi } from "../../hooks/useTranslationApi";
+import comingSoonImg from "../../assets/images/1.jpg";
+
 
 
 const { Text, Title } = Typography;
@@ -71,7 +73,7 @@ const CarList: React.FC<CarListProps> = ({
             return (
                 <div className="carousel-item-container">
                     <img
-                        src="https://via.placeholder.com/400/320"
+                        src={comingSoonImg}
                         alt="Vehicle"
                         style={{
                             width: "100%",

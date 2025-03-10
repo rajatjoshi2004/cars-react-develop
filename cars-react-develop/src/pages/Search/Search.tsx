@@ -1598,7 +1598,31 @@ const Search = () => {
                   placeholder={t("search.sMakes")}
                 />
               </Panel>
-
+              <Panel header={t("search.model")} key="10">
+                  <SearchableCheckboxGroup
+                    options={models.map((m) => ({
+                      label: (
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                            width: "100%",
+                          }}
+                        >
+                          {m.name}
+                        </div>
+                      ),
+                      value: m.id,
+                      count: m.cars_qty,
+                    }))}
+                    value={filters.selectedModel}
+                    onChange={(value) =>
+                      handleFilterChange("selectedModel", value)
+                    }
+                    placeholder={t("search.sModel")}
+                  />
+                </Panel>
               <Panel header={t("search.condition")} key="Condition">
                 <Space direction="vertical" style={{ width: "100%" }}>
                   <div>

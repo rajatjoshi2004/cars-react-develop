@@ -685,8 +685,8 @@ const BidInformation = ({
       </div>
       <hr />
       {/*------ current bid ----- */}
-      {activeLot.buy_now !== null ||
-        (activeLot.buy_now === 0 && (
+      {(activeLot.buy_now !== null ||  activeLot.buy_now === 0) &&
+       (
           <>
             <div className="flex gap-2 items-baseline py-1">
               <span className="font-light w-1/3">
@@ -704,7 +704,7 @@ const BidInformation = ({
             </div>
             <hr />
           </>
-        ))}
+        )}
 
       {/*-------- time left ------- */}
       <div className="py-1 gap-2 items-baseline flex">
