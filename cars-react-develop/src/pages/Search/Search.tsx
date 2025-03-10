@@ -217,7 +217,7 @@ const RangeFilterWithInput = ({ min, max, value, onChange, step = 1 }) => {
       onChange(tempValue);
     }
   };
-
+  const { t } = useTranslationApi();
   return (
     <div>
       <div style={{ display: "flex", gap: "8px", marginBottom: "8px" }}>
@@ -263,7 +263,7 @@ const RangeFilterWithInput = ({ min, max, value, onChange, step = 1 }) => {
         disabled={!!error}
         style={{ marginTop: "8px", width: "100%" }}
       >
-        Apply Filter
+        {t('search.afilter')}
       </Button>
     </div>
   );
@@ -880,7 +880,7 @@ const Search = () => {
                       display: "flex",
                       justifyContent: "space-between",
                       alignItems: "center",
-                      fontSize: "20px",
+                      fontSize: "16px",
                       marginBottom: "10px",
                       // paddingRight: "10px",
                       fontWeight: "bold",
@@ -963,7 +963,7 @@ const Search = () => {
                       display: "flex",
                       justifyContent: "space-between",
                       alignItems: "center",
-                      fontSize: "20px",
+                      fontSize: "16px",
                       marginBottom: "10px",
                       // paddingRight: "10px",
                       fontWeight: "bold",
@@ -1413,7 +1413,7 @@ const Search = () => {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    fontSize: "20px",
+                    fontSize: "16px",
                     marginBottom: "10px",
                     // paddingRight: "10px",
                     fontWeight: "bold",
@@ -1496,7 +1496,7 @@ const Search = () => {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    fontSize: "20px",
+                    fontSize: "16px",
                     marginBottom: "10px",
                     // paddingRight: "10px",
                     fontWeight: "bold",

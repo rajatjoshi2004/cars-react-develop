@@ -302,7 +302,7 @@ const UserProfileUpdate: React.FC = () => {
                     >
                         <Form.Item
                             name="currentPassword"
-                            label={t('otp.currntpassword')}x
+                            label={t('otp.currntpassword')}
                             rules={[
                                 {
                                     required: true,

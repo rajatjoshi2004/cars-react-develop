@@ -1,37 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Globe } from 'lucide-react';
 import './LanguageSelector.css';
 
 const languages = [
-  { code: 'en', name: 'English' },
-  { code: 'bg', name: 'Bulgarian' },
+  { code: 'en', name: 'English', flag: 'https://flagcdn.com/w40/gb.png' },
+  { code: 'bg', name: 'Bulgarian', flag: 'https://flagcdn.com/w40/bg.png' },
 ];
 
 const LanguageSelector: React.FC = () => {
-  const { i18n, t } = useTranslation();
+  const { i18n } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
 
-  const changeLanguage = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const languageCode = e.target.value;
+  const changeLanguage = (languageCode: string) => {
     i18n.changeLanguage(languageCode);
+    setIsOpen(false);
   };
 
   return (
     <div className="language-selector">
-      <Globe className="language-icon" />
-      <select
-        value={i18n.language}
-        onChange={changeLanguage}
-        className="language-select"
-        aria-label={t('selectLanguage')}
-      >
+      <div className="custom-select" onClick={() => setIsOpen(!isOpen)}>
+        <img
+          src={languages.find(lang => lang.code === i18n.language)?.flag}
+          alt={i18n.language}
+          className="flag-icon"
+        />
+        <span>{languages.find(lang => lang.code === i18n.language)?.name}</span>
+      </div>
 
-        {languages.map((language) => (
-          <option key={language.code} value={language.code}>
-            {language.name}
-          </option>
-        ))}
-      </select>
+      {isOpen && (
+        <ul className="language-dropdown">
+          {languages.map((language) => (
+            <li
+              key={language.code}
+              onClick={() => changeLanguage(language.code)}
+              className="language-option"
+            >
+              <img src={language.flag} alt={language.name} className="flag-icon" />
+              <span>{language.name}</span>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

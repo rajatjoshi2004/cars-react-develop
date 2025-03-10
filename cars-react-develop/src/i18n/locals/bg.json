@@ -64,7 +64,9 @@
         "registerNow": "Регистрирай се сега"
     },
     "search": {
-        "sFilter": "Филтри за търсене",
+        "welcome": "Добре дошли в USA Cars Asicompany",
+        "afilter": "Приложи филтър",
+        "sFilter": "Филтри",
         "resetAll": "Нулиране на всички",
         "select": "Изберете само превозни средства",
         "buyIt": "Купи го сега",

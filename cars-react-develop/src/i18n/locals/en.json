@@ -64,7 +64,9 @@
         "registerNow": "Register Now"
     },
     "search": {
-        "sFilter": "Search Filters",
+        "welcome": "Welcome to USA Cars Asicompany",
+        "afilter": "Apply Filter",
+        "sFilter": "Filters",
         "resetAll": "Reset All",
         "select": "Select Vehicles Only",
         "buyIt": "Buy It Now",
