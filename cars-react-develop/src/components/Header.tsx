@@ -69,10 +69,8 @@ const AppHeader = () => {
                         <SearchInput />
                     </div>
                 )}
-                <div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
                     <LanguageSelector />
-                           
-                           
                 </div>
                 
                 {/* Buttons on the right */}
@@ -156,6 +154,8 @@ const AppHeader = () => {
                     </div>
                 )}
             </Header>
+
+            
         </>
     );
 };
@@ -183,10 +183,12 @@ const styles = {
         top: 0,
         backgroundColor: "#4F359B",
         boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+        width: "100%",
     },
     logo: {
         display: "flex",
         alignItems: "center",
+        gap : "10px"
     },
     title: {
         margin: 0,
@@ -194,7 +196,6 @@ const styles = {
     },
     logoImage: {
         height: "40px",
-        // width: "70px",
     },
     searchContainer: {
         flex: 1,
@@ -213,24 +214,29 @@ const styles = {
     buttonContainer: {
         display: "flex",
         alignItems: "center",
-        gap: "16px",
+        gap: "5px",
     },
     signInButton: {
         display: "flex",
         alignItems: "center",
         fontWeight: "bold",
         color: "white",
-        gap: "8px",
+        gap: "5px",
     },
     avatar: {
         backgroundColor: "#f0f0f0",
         color: "black",
     },
     registerButton: {
+        padding: "8px 14px",
+        fontSize: "14px",
         backgroundColor: "#FFC107",
-        color: "#000",
+        color: "black",
         fontWeight: "bold",
         border: "none",
+        whiteSpace: "nowrap",
+        gap : "5px"
+        
     },
 };
 

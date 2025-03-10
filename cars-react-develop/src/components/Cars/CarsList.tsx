@@ -22,6 +22,9 @@ import { formatSaleDate } from "../../utils/helpers/formatdate";
 import copart from "../../assets/images/copart.png";
 import aiia from "../../assets/images/aiia.png";
 import RenderAuctionStatus from "../renderAuctionStatus";
+import { useTranslation } from 'react-i18next';
+import { useTranslationApi } from "../../hooks/useTranslationApi";
+
 
 const { Text, Title } = Typography;
 
@@ -245,7 +248,7 @@ const CarList: React.FC<CarListProps> = ({
 
         return statusMap[status] || { text: "Unknown", color: "default" };
     };
-
+    const { t } = useTranslationApi();
     return (
         <>
             {/* Add this CSS to your component or in a separate stylesheet */}
@@ -448,14 +451,14 @@ const CarList: React.FC<CarListProps> = ({
                                                 >
                                                      <Col xs={24}>
                                                         <Tag >
-                                                            Engine:{" "}
+                                                        {t('search.engine')}:{" "}
                                                         </Tag>
                                                         <Text>{engineInfo}</Text>
                                                         
                                                     </Col>
                                                     <Col xs={12}>
                                                         <Text type="secondary">
-                                                            Seller:
+                                                        {t('search.seller')}:
                                                         </Text>
                                                         <br />
                                                         <Badge
@@ -466,7 +469,7 @@ const CarList: React.FC<CarListProps> = ({
                                                     </Col>
                                                     <Col xs={12}>
                                                         <Text type="secondary">
-                                                            Sale doc.:
+                                                        {t('search.saledoc')}:
                                                         </Text>
                                                         <br />
                                                         <Badge
@@ -478,14 +481,14 @@ const CarList: React.FC<CarListProps> = ({
 
                                                     <Col xs={12}>
                                                         <Text type="secondary">
-                                                            Milage:
+                                                        {t('search.milage')}:
                                                         </Text>
                                                         <br />
                                                         <Text>{mileage}</Text>
                                                     </Col>
                                                     <Col xs={12}>
                                                         <Text type="secondary">
-                                                            Location:
+                                                        {t('search.location')}:
                                                         </Text>
                                                         <br />
                                                         <Text>{location}</Text>
@@ -493,7 +496,7 @@ const CarList: React.FC<CarListProps> = ({
 
                                                     <Col xs={12}>
                                                         <Text type="secondary">
-                                                            Damage:
+                                                        {t('search.damage')}:
                                                         </Text>
                                                         <br />
                                                         <Text>
@@ -505,7 +508,7 @@ const CarList: React.FC<CarListProps> = ({
                                                     </Col>
                                                     <Col xs={12}>
                                                  
-                              <Text className="text-gray-600">Status: </Text>
+                              <Text className="text-gray-600">{t('search.status')}: </Text>
                               <Text strong>
                                 <Tag color={formatStatus(status).color}>
                                   {formatStatus(status).text}
@@ -526,7 +529,7 @@ const CarList: React.FC<CarListProps> = ({
                                                             }}
                                                         >
                                                             <Text type="secondary">
-                                                                Est. Price:
+                                                            {t('search.estprice')}:
                                                             </Text>
                                                             <Text
                                                                 strong

@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
-
+import { useTranslation } from 'react-i18next';
+import { useTranslationApi } from "../hooks/useTranslationApi";
 export default function AccountVerified() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -42,27 +43,27 @@ export default function AccountVerified() {
 
     fetchData();
   }, [token, navigate]);
-
+  const { t } = useTranslationApi();
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <div className="bg-white shadow-lg rounded-2xl p-6 text-center max-w-md">
         {verificationStatus === "success" ? (
           <>
             <CheckCircleOutlined className="text-green-500 mx-auto" style={{ fontSize: '64px' }} />
-            <h1 className="text-2xl font-semibold mt-4">Account Verified Successfully!</h1>
-            <p className="text-gray-600 mt-2">You will be redirected to the login page shortly.</p>
+            <h1 className="text-2xl font-semibold mt-4">{t('otp.accverify')}!</h1>
+            <p className="text-gray-600 mt-2">{t('otp.redirect')}.</p>
           </>
         ) : verificationStatus === "invalid" ? (
           <>
             <CloseCircleOutlined className="text-red-500 mx-auto" style={{ fontSize: '64px' }} />
-            <h1 className="text-2xl font-semibold mt-4">Invalid or Already Verified Token</h1>
-            <p className="text-gray-600 mt-2">Please check your email for the correct link.</p>
+            <h1 className="text-2xl font-semibold mt-4">{t('otp.invalid')}</h1>
+            <p className="text-gray-600 mt-2">{t('otp.checkemail')}</p>
           </>
         ) : (
-          <h1 className="text-2xl font-semibold mt-4">Verifying...</h1>
+          <h1 className="text-2xl font-semibold mt-4">{t('otp.verifying')}</h1>
         )}
         {verificationStatus !== "success" && (
-          <p className="text-blue-500 mt-4 cursor-pointer" onClick={() => navigate("/register")}>Go to Register</p>
+          <p className="text-blue-500 mt-4 cursor-pointer" onClick={() => navigate("/register")}>{t('otp.goRegister')}</p>
         )}
       </div>
     </div>

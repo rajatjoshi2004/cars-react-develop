@@ -264,6 +264,7 @@
   color: rgb(107 114 128);
   margin-top: 1rem;
 }
+
 .action-button-primary {
   background-color: rgb(37 99 235);
   color: white;
@@ -299,6 +300,7 @@
 .highlight::after {
   content: ' ⚠️';
 }
+
 .phone-link {
   color: rgb(37 99 235);
   text-decoration: none;
@@ -306,4 +308,28 @@
 
 .phone-link:hover {
   text-decoration: underline;
+}
+
+.calculator-container {
+  min-height: auto;
+  /* Remove unnecessary height */
+  padding-bottom: 0.5rem;
+  /* Reduce padding */
+}
+
+.calculator-grid {
+  gap: 1rem;
+  /* Reduce the gap between grid items */
+}
+
+.calculator-card {
+  margin-bottom: 0.5rem;
+  /* Reduce bottom margin */
+}
+
+.total-price {
+  margin-top: 0.5rem;
+  /* Reduce top margin */
+  padding: 0.75rem;
+  /* Adjust padding */
 }

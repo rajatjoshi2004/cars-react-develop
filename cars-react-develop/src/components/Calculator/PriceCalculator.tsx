@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Printer, Copy, Info } from 'lucide-react';
 import './PriceCalculator.css';
+import { useTranslation } from "react-i18next";
+import { useTranslationApi } from "../../hooks/useTranslationApi";
 
 interface PriceCalculatorProps {
   currentBid: string | null;
@@ -114,7 +116,7 @@ const PriceCalculator: React.FC<PriceCalculatorProps> = ({ currentBid: initialBi
   };
 
  
-
+const { t } = useTranslationApi();
   return (
     <div className="calculator-container">
       <div className="calculator-row"></div>
@@ -123,7 +125,7 @@ const PriceCalculator: React.FC<PriceCalculatorProps> = ({ currentBid: initialBi
       <div className="input-group">
         <div>
           
-        <label className="form-label">Enter Your Bid</label>
+        <label className="form-label">{t('calc.title')}</label>
         <div className="bid-input-wrapper">
           <button className="bid-button" onClick={handleDecrement}>−</button>
             <div className="bid-currency">
@@ -145,35 +147,35 @@ const PriceCalculator: React.FC<PriceCalculatorProps> = ({ currentBid: initialBi
       <div className="input-group">
         <div className="fee-row">
         <div className="fee-label">
-          <span>Lot Price</span>
+          <span>{t('calc.lotPrice')}</span>
         </div>
         <span className="fee-amount">${currentBid} USD</span>
         </div>
 
         <div className="fee-row">
         <div className="fee-label">
-          <span>Auction Fees</span>
+          <span> {t('calc.auctionFees')} </span>
           <div className="tooltip-wrapper">
           <Info className="info-icon" />
           <div className="tooltip">
             <div className="tooltip-row">
-            <span>Buyer Fee:</span>
+            <span>{t('calc.buyerFee')}:</span>
             <span>${buyerFee}</span>
             </div>
             <div className="tooltip-row">
-            <span>Internet Bid Fee:</span>
+            <span>{t('calc.internetBidFee')}:</span>
             <span>${internetBidFee}</span>
             </div>
             <div className="tooltip-row">
-            <span>Service Fee:</span>
+            <span>{t('calc.gateFee')}:</span>
             <span>${gateFee}</span>
             </div>
             <div className="tooltip-row">
-            <span>Environmental Fee:</span>
+            <span>{t('calc.environmentalFee')}:</span>
             <span>${environmentalFee}</span>
             </div>
             <div className="tooltip-row">
-            <span>Title Fee:</span>
+            <span>{t('calc.titleFee')}:</span>
             <span>${titleFee}</span>
           </div>
           </div>
@@ -184,21 +186,21 @@ const PriceCalculator: React.FC<PriceCalculatorProps> = ({ currentBid: initialBi
 
         <div className="fee-row">
         <div className="fee-label">
-          <span>Documentation Fees</span>
+          <span>{t('calc.documentationFees')}</span>
         </div>
         <span className="fee-amount">${documentationFees} USD</span>
         </div>
 
         <div className="fee-row">
         <div className="fee-label">
-          <span>Broker Fees</span>
+          <span>{t('calc.brokerFees')}</span>
         </div>
         <span className="fee-amount">${brokerFees} USD</span>
         </div>
 
         <div className="total-price">
         <div className="total-row">
-          <span className="total-label">Total Price*</span>
+          <span className="total-label">{t('calc.totalPrice')}*</span>
           <span className="total-amount">${totalPrice.toFixed(2)} USD</span>
         </div>
         </div>
@@ -206,11 +208,11 @@ const PriceCalculator: React.FC<PriceCalculatorProps> = ({ currentBid: initialBi
         <div className="action-buttons" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
         <button onClick={handlePrint} className="action-button">
           <Printer className="h-4 w-4" />
-          Print
+          {t('calc.print')}
         </button>
         <button onClick={handleCopy} className="action-button">
           <Copy className="h-4 w-4" />
-          Copy
+          {t('calc.copy')}
         </button>
         </div>
       </div>

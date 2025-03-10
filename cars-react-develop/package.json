@@ -12,7 +12,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.6.0",
     "@types/react-router-dom": "^5.3.3",
-    "antd": "^5.23.3",
+    "antd": "^5.24.3",
     "axios": "^1.7.9",
     "easy-magnify": "^1.1.4",
     "i18next": "^24.2.2",
